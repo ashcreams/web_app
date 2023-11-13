@@ -1,0 +1,880 @@
+body {
+    overflow-x: hidden;
+    text-align: center;
+    background-image: url(../img/dark_bg.jpg) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+	font-family:'Alegreya Sans', sans-serif;
+	color:#151516;
+	background-color:#151516;
+}
+body.dy {
+    background-image: url(../img/light_bg.jpg) !important;
+}
+.main-section {
+    margin: auto;
+    position: relative;
+    min-height: 425px;
+}
+.spacer-table {
+    width: 100%;
+    /*height: 200px;*/
+    margin-bottom: 20px;
+	margin-top:30px;
+}
+.bottom {
+    padding-bottom: 20px;
+    width: 100%
+}
+.bottom-floor {
+    /*position: absolute;*/
+    bottom: 0
+}
+.block {
+    display: block
+}
+.pt-section {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+img.desaturate {
+	filter: grayscale(100%);
+}
+a,a.active,a:active,a:focus {
+    color: #dbb905;
+    outline: 0
+}
+a:hover{
+	color:#fcc741;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family:'Cinzel', serif;
+    font-weight: 700;
+}
+
+
+/****HEADER****/
+
+
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    background-image: url(../img/glass_navheader.png);
+}
+.header #headerDivOuter {
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+	background-image: none;
+}
+.header #titleCell {
+    text-align: center;
+    background-image: url(../img/textbox.png);
+    background-size: cover;
+    background-position: center bottom;
+	background-repeat: no-repeat;
+    height: 90px;
+    padding: 0 10px;
+    font-family: 'Cinzel';
+    font-weight: bold;
+}
+.header td {
+    padding: 3px;
+}
+.header #headerDivInner {
+    position: static;
+	background-image: none;
+}
+.header .header-table {
+    height: 100%;
+    width: 100%
+}
+.header .header-buttons {
+    display: table-cell;
+    margin-left: 0;
+}
+.header #GUIButtonsB {
+    margin-left: 5px
+}
+.header .control-button {
+    display: inline;
+    vertical-align: middle;
+    border-style: solid;
+    border-color: #1b3147;
+    border-width: 1px;
+}
+.header #headerDivLeft {
+    display: inline;
+    float: left
+}
+.header #headerLabel {
+    color: #dbb905;
+    display: inline;
+}
+.header #headerDivRight,
+.header #headerDivRight2 {
+    display: inline;
+    float: right
+}
+.header #timer {
+    color: #fff;
+    display: inline;
+    text-shadow: 0 0 10px #6b1911;
+    font-weight: 600;
+}
+.header #timer .over {
+    display: inline
+}
+
+
+/**** BUTTONS ****/
+
+
+.btn {
+    background-color: #6b1911;
+	color:#dbb905;
+	border-radius:0px;
+	border:none;
+}
+.btn.handicap {
+    background-color: #363636;
+}
+.btn.active {
+    color: #fff;
+    background-color: #d79922;
+}
+.btn.btn-role {
+	border-width: 3px !important;
+    border-style: solid !important;
+    border-color: #ab483e #46120d #270400 #3a0500 !important;
+}
+.btn.focus, .btn:focus, .btn:hover {
+    color: #fcc741;
+    text-decoration: none;
+	background-color: #581009;
+	outline:none;
+}
+.big-button {
+    border-radius: 0 !important;
+    border-color: #fcc43d #825a00 #321500 #996a00 !important;
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 30px;
+	height:70px;
+    background: #d79922 !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+	color:#fff;
+}
+.big-button:hover, .big-button:focus, #roleButtons label.active:hover {
+	background:#dbb905 !important;
+	color:#fff;
+}
+#advancedRulesDiv label,
+#roleButtons label {
+    font-size: 18px;
+	/* padding: 14px 16px; */
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+}
+#advancedRulesDiv label.active {
+	color: #fff;
+    background-color: #d79922;
+	border:none;
+}
+#roleButtons label.active {
+    color: #fff;
+    background-color: #d79922;
+	border-color: #fcc43d #825a00 #321500 #996a00 !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+}
+#advancedRulesDiv label.active.disabled,
+#roleButtons label.active.disabled {
+    opacity: 1
+}
+button.pt-button {
+    background-image: url(../img/roleicons/roleicon_peepingtom.jpg);
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding: 15px;
+    padding-left: 65px;
+}
+.btn-group-vertical>.btn:first-child:not(:last-child) {
+	border-radius:0px;
+}
+
+
+/**** MOD PROMPTS ****/
+
+
+.prompt p {
+    padding: 7px 25px;
+    font-size: 18px;
+}
+.main-section .prompt .modVoice {
+    color: #e4e6e7;
+}
+.main-section .prompt .modSecret {
+    font-style: italic;
+	color: #dbb905;
+}
+.main-section .prompt .modSecret.instructions {
+    color: #dbb905;
+	font-family:'Cinzel', serif;
+	font-style:normal;
+	font-weight:bold;
+}
+.prompt .modThumbs {
+    font-size: 96px;
+}
+.prompt .modCode {
+    font-family: "Lucida Console", Monaco, monospace;
+}
+.prompt .modShow {
+    font-size: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.main-section .prompt .modShow {
+    color: #dbb905;
+	font-family:'Cinzel', serif;
+}
+.main-section .prompt .modShow .rolename,
+.main-section .prompt .modShow .player-name-highlight,
+.main-section .prompt .modShow .deathname {
+	text-shadow: 0 0 15px #6b1911;
+	font-weight: 600;
+}
+.main-section .prompt .modShow .keyword-highlight,
+.main-section .prompt .modVoice .keyword-highlight {
+    color: #dbb905;
+}
+
+.main-section .prompt .modVoice .keyword-highlight-demon {
+	text-shadow: 0 0 10px #a425b0;
+	color:#a664a2;
+	font-weight:800;
+}
+.main-section .prompt .modVoice .keyword-highlight-angel,
+.main-section .prompt .modShow .clergy {
+	text-shadow: 0 0 10px #dbb905;
+	color:#e5c97a;
+	font-weight:800;
+}
+.main-section .peasant {
+	text-shadow: 0 0 10px #1e97cc;
+	color:#1e97cc;
+	font-weight:bold;
+}
+.main-section .witch {
+	text-shadow: 0 0 10px red;
+	color:red;
+	font-weight:bold;
+}
+.main-section .clergy {
+	color:#dbb905;
+	text-shadow: 0 0 10px #fff;
+	font-weight:bold;
+}
+.pt-prompt {
+	text-shadow: 0 0 15px #6b1911;
+	font-size: 18px;
+	font-style: italic;
+	color: #dbb905;
+}
+
+/* DAY */
+.dy .main-section .prompt .modVoice,
+.dy .main-section .prompt .modSecret {
+    color: #151516;
+}
+
+
+/**** TABLES ****/
+
+table .player-name {
+	text-align: left;
+	color: #d6d6d6;
+	padding:5px;
+    padding-left:15px!important;
+}
+.player-name input {
+	color: #dbb905;
+	border-color:#dbb905;
+	background-color:transparent;
+	outline:none;
+    padding:3px;
+}
+.player-name input::selection {
+  background: #6b1911; /* WebKit/Blink Browsers */
+}
+.player-name input::-moz-selection {
+  background: #6b1911; /* Gecko Browsers */
+}
+
+table .icon-tag {
+    text-align: right
+}
+table td,
+table th {
+    vertical-align: middle!important;
+    text-align: center;
+    margin: 0
+}
+table td p,
+table th p {
+    margin: 0
+}
+table td {
+    font-weight: 400
+}
+.table>thead>tr>th {
+	border-bottom:none;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+table td.highlight-role-tag {
+    border-top-color:#dbb905;
+}
+
+.main-section .player-table .player-list-row {
+    background-color: #151516;
+	/* height:60px; */
+}
+
+.main-section .player-table .player-list-row.dead-player-row {
+    opacity:.3;
+}
+/*.dy .main-section .player-table .player-list-row {
+    background-color: #444444;
+}*/
+/*.main-section .player-table .player-list-row.custom-stripe-row {
+    background-color: #151516;
+}
+.dy .main-section .player-table .player-list-row.custom-stripe-row {
+    background-color: #fff;
+}
+/*.main-section .player-table .player-list-row.dead-player-row.custom-stripe-row {
+    background-color: #b0c2b0;
+}*/
+
+.player-list-header {
+    font-family: 'Cinzel';
+    font-size: 16px;
+	background-color:#6b1911 !important;
+}
+
+.player-table th {
+	color:#dbb905 !important;
+}
+
+td.icon-tag {
+    color:#d6d6d6;
+	font-size: 24px;
+}
+
+td.player-name {
+    font-size: 20px;
+    padding-left: 3px!important;
+    padding-right: 3px!important;
+    }
+
+td.role-tag {
+	position:relative;
+    font-size: 11px;
+	font-weight:900;
+	color:#DBB905;
+}
+td.role-mystery {
+    font-size: 24px;
+    color:#DBB905;
+}
+.role-tag img{
+	position: absolute;
+    margin-top: -25px;
+    margin-left: -25px;
+}
+.vertical {
+	position:relative;
+	background-color:#151516;
+	display:block;
+	width:50px;
+	-webkit-transform: rotate(269deg);
+    -moz-transform: rotate(269deg);
+    -o-transform: rotate(269deg);
+    writing-mode: lr-tb;
+	transform-origin: 0% 0%;
+	left:52px;
+	float:left;
+	top:25px;
+}
+
+.roleicon {
+    margin: auto;
+    position: relative;
+    padding-top: 15px;
+}
+
+/*.roleicon img {
+    margin-right: 0px;
+}*/
+
+/* GLYPHS */
+
+.glyphicon-thumbs-up {
+	top: 4px;
+	color:red;
+}
+.glyphicon-thumbs-down {
+	top: 4px;
+	color:#1e97cc;
+}
+.glyphicon-heart { /*extra life*/
+	top: 4px;
+	color:#6b1911;
+}
+.glyphicon-fire { /*last stand*/
+	top: 4px;
+	color:#6b1911;
+}
+.glyphicon-certificate { /*bomb*/
+	top: 4px;
+}
+.glyphicon-remove { /*dead*/
+	top: 4px;
+}
+.glyphicon-screenshot { /*nightkilllist?*/
+	top: 4px;
+}
+.glyphicon-gift { /*illusion*/
+	top: 4px;
+}
+.glyphicon-star-empty { /*can't protect*/
+	top: 4px;
+}
+.glyphicon-star { /*can protect*/
+	top: 4px;
+}
+.glyphicon-ban-circle {
+	top: 4px;
+}
+.glyphicon-warning-sign {
+	top: 4px;
+}
+
+
+/**** POPUPS ****/
+
+.modal {
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1050
+}
+.modal_wrapper {
+    display: table;
+    overflow: auto;
+    overflow-y: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    text-align: center;
+    margin: 0 auto
+}
+.modal-dialog {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 20px
+}
+
+.modal-content {
+	background: url('../img/light_bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding-top: 20px;
+    border-bottom: 0;
+    border: 20px solid transparent;
+    border-image: url(../img/border_img.png) 11 repeat;
+}
+
+.modal-header {
+	border: none;
+}
+
+
+/*** VILLAGE WIN ***/
+/*
+.vw {
+    background-color: #ffd
+}
+.vw .main-section p,
+.vw .main-section td,
+.vw .main-section th {
+    color: #1b3147
+}
+.vw .main-section .btn {
+    border-color: #a0a0a0;
+    color: #1b3147
+}
+.vw .main-section .prompt .modVoice {
+    color: #3c0
+}
+.vw .main-section .prompt .modVoice .player-name-highlight {
+    color: #add600
+}
+.vw .main-section .player-table .player-list-row {
+    background-color: #f2f2d4
+}
+.vw .main-section .player-table .player-list-row.custom-stripe-row {
+    background-color: #dfdfc6
+}
+.vw .main-section .player-table .player-list-row.dead-player-row {
+    background-color: #b3b3a5
+}
+.vw .main-section .player-table .player-list-row.dead-player-row.custom-stripe-row {
+    background-color: #c2c2b0
+}
+*/
+
+/*** WITCHES WIN ***/
+/*
+.ww {
+    background-color: #303
+}
+.ww .main-section p,
+.ww .main-section td,
+.ww .main-section th {
+    color: #f8f8f8
+}
+.ww .main-section .btn {
+    border-color: #a0a0a0;
+    color: #1b3147
+}
+.ww .main-section .prompt .modVoice {
+    color: #4d0
+}
+.ww .main-section .prompt .modVoice .player-name-highlight {
+    color: #e3dd00
+}
+.ww .main-section .player-table .player-list-row {
+    background-color: #3b0d3b
+}
+.ww .main-section .player-table .player-list-row.custom-stripe-row {
+    background-color: #462046
+}
+.ww .main-section .player-table .player-list-row.dead-player-row {
+    background-color: #614d61
+}
+.ww .main-section .player-table .player-list-row.dead-player-row.custom-stripe-row {
+    background-color: #583d58
+}
+*/
+
+
+
+
+
+/****RESPONSIVE ****/
+
+@media (max-width: 767px) {
+    .header {
+        height: 120px;
+        font-size: 24px;
+		background-size: cover;
+   		background-position: center;
+		border-bottom:52px solid #151516;
+    }
+	.header .player-name-highlight {
+        font-size: 18px;
+		font-family:'Alegreya Sans', sans-serif;
+    }
+	.main-section {
+        padding-top: 130px;
+        width: 100%
+    }
+	.header #titleCell {
+    	text-align: center;
+    	height: 74px;
+		margin:auto;
+    	padding: 0 10px;
+		line-height: 1.1;
+    }
+
+	.header #headerDivLeft {
+		float:none;
+	}
+	.header #headerDivRight,
+	.header #headerDivRight2 {
+		float:left;
+	}
+	.header #headerDivLeft .header-table {
+		margin:auto;
+		width:60%;
+		min-width:250px;
+		max-width:350px;
+	}
+	.header .uibtns {
+		margin:auto;
+		width:407px;
+	}
+	#timerCell {
+        width: 65px;
+    }
+	#GUIButtonsA {
+        display: table;
+    }
+    #GUIButtonsB {
+        display: none!important
+    }
+	td.player-name {
+		font-size: 14px;
+	}
+    /*
+    #headerDivOuter {
+        width: 100%;
+    }
+    #headerDivLeft,
+    #headerDivRight,
+    #headerDivRight2 {
+        height: 54px
+    }
+    #headerDivLeft {
+        width: 183px
+    }
+
+
+    .btn {
+        padding: 5px 8px
+
+	*/
+    .advance-button-group .btn {
+        font-size: 16px;
+        padding: 10px 8px;
+        margin: 8px
+    }
+    #playerListButtons .btn {
+        font-size: 16px;
+        padding: 10px 8px;
+        margin: 8px
+    }
+}
+@media (min-width: 767px) {
+    .header {
+        height: 72px;
+        font-size: 28px
+    }
+    .header .player-name-highlight {
+        font-size: 18px;
+	    font-family:'Alegreya Sans', sans-serif;
+		position: relative;
+    	top: -10px;
+    }
+    #headerDivOuter {
+        width: 767px
+    }
+    #headerDivLeft,
+    #headerDivRight,
+    #headerDivRight2 {
+        height: 72px
+    }
+    #headerDivLeft {
+        width: 270px
+    }
+    #GUIButtonsA {
+        display: none!important
+    }
+    #GUIButtonsB {
+        display: table
+    }
+    .advance-button-group .btn {
+        font-size: 18px;
+        padding: 14px;
+        margin: 10px
+    }
+    #playerListButtons .btn {
+        font-size: 18px;
+        padding: 14px;
+        margin: 10px
+    }
+    .main-section {
+        padding-top: 88px;
+        width: 768px
+    }
+}
+
+
+/*.main-section .btn {
+    border-color: #a0a0a0;
+    color: #1b3147
+}*/
+
+/* GAME SETUP
+.gs .main-section .prompt .modVoice {
+    color: #e4e6e7;
+}
+.gs .main-section .prompt .modSecret {
+    color: #dbb905;
+}
+
+.gs .main-section .prompt .modShow {
+    color: #dbb905;
+	font-family:'Cinzel';
+}
+.gs .main-section .prompt .modShow .keyword-highlight,
+.gs .main-section .prompt .modShow .player-name-highlight {
+    color: #dbb905;
+}
+
+.gs .main-section .prompt .modShow .rolename {
+	color:red;
+}*/
+
+/****UNKNNOWN
+
+.glyphicon.glyphicon-lock {
+    font-size: .8em
+}
+.img-centered {
+    margin: 0 auto
+}
+
+#selectRoles .modSecret {
+    color: #1b3147
+}
+
+/*.gs {
+    background-color: #dfd
+}*/
+
+/*.gs .main-section p,
+.gs .main-section td,
+.gs .main-section th {
+    color: #1b3147
+}*/
+
+
+
+/*.gs .main-section .prompt .modVoice .player-name-highlight {
+    color: #a0b400;
+}
+
+.gs .main-section .prompt .modSecret .player-name-highlight {
+    color: #a4981c;
+}
+.gs .main-section .prompt .modThumbs {
+    color: #1b3147;
+}*/
+
+
+
+
+/*.dy {
+    background-color: #e2e2ff
+}
+.dy .main-section p,
+.dy .main-section td,
+.dy .main-section th {
+    color: #1b3147
+}
+.dy .main-section .btn {
+    border-color: #a0a0a0;
+    color: #1b3147
+}*/
+
+/*.dy .main-section .prompt .modVoice .player-name-highlight {
+    color: #a0b400
+}
+
+.dy .main-section .prompt .modSecret .player-name-highlight {
+    color: #a4981c
+}*/
+
+
+/*.dy .main-section .prompt .modThumbs {
+    color: #1b3147
+}
+.dy .main-section .prompt .modShow {
+    color: #02d;
+}
+.dy .main-section .prompt .modShow .player-name-highlight {
+    color: #dbb905;
+	font-family:'Cinzel';
+}
+.dy .main-section .prompt .modStory {
+    color: #505
+}
+.dy .main-section .prompt .modStory .keyword-highlight,
+.dy .main-section .prompt .modStory .player-name-highlight {
+    color: #bb8522;
+}
+.dy .main-section .player-table .player-list-row {
+    background-color: #d8d8f2
+}
+.dy .main-section .player-table .player-list-row.custom-stripe-row {
+    background-color: #cacadf
+}
+.dy .main-section .player-table .player-list-row.dead-player-row {
+    background-color: #a7a7b3
+}
+.dy .main-section .player-table .player-list-row.dead-player-row.custom-stripe-row {
+    background-color: #b3b3c2
+} */
+
+/*.nt {
+    background-color: #000
+}
+.nt .main-section p,
+.nt .main-section td,
+.nt .main-section th {
+    color: #f8f8f8
+}*/
+
+/*.nt .main-section .btn {
+    border-color: #a0a0a0;
+    color: #1b3147
+}
+.nt .main-section .prompt .modVoice {
+    color: #4d0
+}
+.nt .main-section .prompt .modVoice .player-name-highlight {
+    color: #e3dd00
+}
+.nt .main-section .prompt .modSecret {
+    color: #d8d8d8
+}
+.nt .main-section .prompt .modSecret .player-name-highlight {
+    color: #f9dc20
+}
+.nt .main-section .prompt .modThumbs {
+    color: #f8f8f8
+}
+.nt .main-section .prompt .modShow {
+    color: #0ae
+}
+.nt .main-section .prompt .modShow .player-name-highlight {
+    color: #d9d524*/
+
+/*.nt .main-section .player-table .player-list-row {
+    background-color: #0d0d0d
+}
+.nt .main-section .player-table .player-list-row.custom-stripe-row {
+    background-color: #202020
+}
+.nt .main-section .player-table .player-list-row.dead-player-row {
+    background-color: #4d4d4d
+}
+.nt .main-section .player-table .player-list-row.dead-player-row.custom-stripe-row {
+    background-color: #3d3d3d
+}*/
+
+.main-section .roleSelectTable{
+    position: relative;
+}
+

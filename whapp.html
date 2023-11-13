@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <title>WitchHunt Mod Tool</title> -->
+	<title>Test</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.countdown.css" rel="stylesheet" type="text/css">
+    <link href="css/modapp.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- IE8 support for HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="body" class="gs">
+
+    <!-- Navigation -->
+    <nav class="header">
+        <div id="headerDivOuter" class="header">
+			<div id="headerDivInner" class="header">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div id="headerDivLeft">
+					<table class="header-table">
+						<tr>
+							<td id="titleCell">
+								<p id="headerLabel" class="" href="#page-top"><img src="img/witchhunt_logo.png"></p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="uibtns">
+				<div id="headerDivRight2" class="">
+					<table class="header-table">
+						<tr>
+							<td class="btn-toolbar">
+								<div id="GUIButtonsA" class="btn-group header-buttons">
+									<button class="btn control-button control-button-GUI reveal-roles-button" onClick="toggleHideRoles()">
+										<span class="glyphicon glyphicon-eye-open reveal-roles-icon"></span>
+									</button>
+									<button class="btn control-button control-button-GUI undo-button" onClick="processUndo()">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+									</button>
+									<button class="btn control-button control-button-GUI settings-button" onClick="">
+										<span class="glyphicon glyphicon-cog"></span>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="headerDivRight" class="">
+					<table class="header-table">
+						<tr>
+							<!--<td class="btn-toolbar">
+								<div class="btn-group header-buttons">
+									<button id="volumeMute" class="btn control-button control-button-volume"><span class="glyphicon glyphicon-volume-off"></span></button>
+									<button id="volumeDown" class="btn control-button control-button-volume"><span class="glyphicon glyphicon-volume-down"></span></button>
+									<button id="volumeUp" class="btn control-button control-button-volume"><span class="glyphicon glyphicon-volume-up"></span></button>
+								</div>
+							</td>-->
+							<td id="timerCell">
+								<p id="timer" class="" onClick="timerButtonPlay()" href="#page-top">0:00</p>
+							</td>
+							<td class="btn-toolbar">
+								<div class="btn-group header-buttons">
+									<button id="timerReset" class="btn control-button control-button-timer" onClick="timerButtonReset()"><span class="glyphicon glyphicon-fast-backward"></span></button>
+									<button id="timerBack" class="btn control-button control-button-timer" onClick="timerButtonBack()"><span class="glyphicon glyphicon-backward"></span></button>
+									<button id="timerPlay" class="btn control-button control-button-timer" onClick="timerButtonPlay()"><span id="play" class="glyphicon glyphicon-play"></span></button>
+									<button id="timerForward" class="btn control-button control-button-timer" onClick="timerButtonForward()"><span class="glyphicon glyphicon-forward"></span></button>
+								</div>
+								<div id="GUIButtonsB" class="btn-group header-buttons">
+									<button class="btn control-button control-button-GUI reveal-roles-button" onClick="toggleHideRoles()">
+										<span class="glyphicon glyphicon-eye-open reveal-roles-icon"></span>
+									</button>
+									<button class="btn control-button control-button-GUI undo-button" onClick="processUndo()">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+									</button>
+									<button class="btn control-button control-button-GUI settings-button" onClick="">
+										<span class="glyphicon glyphicon-cog"></span>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+        </div>
+		</div>
+    </nav>
+
+	<!-- 팀 선택 -->
+	<div id="teamSelect" class="main-section">
+		<span id='teamTest'>teamTest</span>
+	</div>
+
+	<!-- 캐릭터 선택 -->
+	<!-- <div id="roleSelect" class="main-section">
+
+		<div id="roleSelectTable" class="roleSelectTable"></div>
+			<div style="overflow:hidden;"><img src="img/roleicons/roleicon_acolyte.jpg">aaaaa
+			<img src="img/roleicons/roleicon_acolyte.jpg">bbbbb
+			<img src="img/roleicons/roleicon_acolyte.jpg">ccccc
+			<img src="img/roleicons/roleicon_acolyte.jpg">ddddd
+			<img src="img/roleicons/roleicon_acolyte.jpg">eeeee
+			<img src="img/roleicons/roleicon_acolyte.jpg">fffff
+			<img src="img/roleicons/roleicon_acolyte.jpg">ggggg</div>
+	</div> -->
+
+	<div id="roleSelect" class="main-section roleSelectTable">
+		<table id="roleSelectTb" class="main-section roleTable" style="background-color:#6b1911">
+			<tbody>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_acolyte.jpg" alt="Acolyte">
+						<p>Acoltye</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_apprentice.jpg" alt="Apprentice">
+						<p>Apprentice</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_assassin.jpg" alt="Assassin">
+						<p>Assassin</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_bod.jpg" alt="B.O.D">
+						<p>B.O.D</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_bomber.jpg" alt="Bomber">
+						<p>Bomber</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_dob.jpg" alt="D.O.B">
+						<p>D.O.B</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_emissary.jpg" alt="Emissary">
+						<p>Emissary</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_fanatic.jpg" alt="Fanatic">
+						<p>Fanatic</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_fortuneteller.jpg" alt="Fortuneteller">
+						<p>Fortuneteller</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_gambler.jpg" alt="Gambler">
+						<p>Gambler</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_gravedigger.jpg" alt="Gravedigger">
+						<p>Gravedigger</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_hunter.jpg" alt="Hunter">
+						<p>Hunter</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_inquisitor.jpg" alt="Inquisitor">
+						<p>Inquisitor</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_judge.jpg" alt="Judge">
+						<p>Judge</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_loosecannon.jpg" alt="Loosecannon">
+						<p>Loosecannon</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_nurse.jpg" alt="Nurse">
+						<p>Nurse</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_oracle.jpg" alt="Oracle">
+						<p>Oracle</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_peepingtom.jpg" alt="Peepingtom">
+						<p>Peepingtom</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_priest.jpg" alt="Priest">
+						<p>Priest</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_spiritualist.jpg" alt="Spiritualist">
+						<p>Spiritualist</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_survivalist.jpg" alt="Survivalist">
+						<p>Survivalist</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_watchman.jpg" alt="Watchman">
+						<p>Watchman</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+    </div>
+
+
+
+
+	<div id="gameSettings" class="main-section">
+		<div id="selectRolesPrompt" class="prompt"><p class="modSecret instructions">캐릭터를 선택해 주세요.</p></div>
+			<div id="roleButtons" class="btn-group-vertical" data-toggle="buttons">
+				<!-- populate dynamically-->
+			</div>
+		<br>
+		<div id="rolesSelectedCount" class="prompt"></div>
+		<div id="advancedRulesDiv" class="btn-group-vertical" data-toggle="buttons">
+			<label class='btn'>
+				<input id='advancedRulesInput' type='checkbox' onChange='clickAdvancedRulesButton()'>
+				<span id='advancedRulesButtonText'>숙련자 규칙 Off</span>
+			</label>
+		</div>
+		<br>
+		<div id="handicapLabel" class="prompt"><p class='modSecret'>핸디캡:</p></div>
+		<div id="handicapDiv" class="btn-group" data-toggle="buttons">
+			<label class='btn handicap'>
+				<input id='villageHandicapInput' type='radio' onChange='clickHandicapButtonVillagers()'>
+				<span id='villageHandicapButtonText'>마을주민</span>
+			</label>
+			<label class='btn handicap active'>
+				<input id='noneHandicapInput' type='radio' checked="checked" onChange='clickHandicapButtonNone()'>
+				<span id='noneHandicapButtonText'>없음</span>
+			</label>
+			<label class='btn handicap'>
+				<input id='witchHandicapInput' type='radio' onChange='clickHandicapButtonWitches()'>
+				<span id='witchHandicapButtonText'>마녀</span>
+			</label>
+		</div>
+		<br>
+		<br>
+		<br>
+		<div id="dealButtons" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom">
+			<button id="dealButton" class="btn btn-primary big-button" onClick="initGame()">확정</button>
+		</div>
+	</div>
+
+	<div id="playerList" class="main-section">
+		<div class="pt-section">
+			<button class="pt-button btn" onClick="ptClick()">Peeping Tom</button>
+			<div class="pt-prompt prompt">Peeping Tom Prompt</div>
+		</div>
+		<div id="playerListPrompt" class="prompt">Player List Prompt</div>
+		<div id="playerListPrompt2" class="prompt">Player List Prompt 2</div>
+		<table id="playerTable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table player-table">
+			<thead>
+				<tr class="player-list-header player-list-row custom-stripe-row">
+					<!--<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						Edit
+					</th>-->
+					<th class="col-lg-7 col-md-7 col-sm-7 col-xs-7 player-name">
+						플레이어 이름
+						<button id="resetNamesButton" class="btn" onClick="resetNamesToDefault()">이름 초기화</button>
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						팀
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						캐릭터
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						선텍
+					</th>
+				</tr>
+			<tbody id="playerTableBody">
+				<!--populate dynamically-->
+			</tbody>
+		</table>
+		<br>
+		<div id="redealButtons" class="advance-button-group col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom">
+			<button id="addPlayerButton" class="btn" onClick="addPlayer()">플레이어 추가</button>
+			<button id="subtractPlayerButton" class="btn" onClick="subtractPlayer()">플레이어 삭제</button>
+			<button id="redealButton" class="btn" onClick="initGame()">다시 섞기</button>
+		</div>
+		<div id="gameStartButtons" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom">
+			<button id="gameStartButton" class="btn btn-primary big-button" onClick="step()">게임 시작</button>
+		</div>
+		<div id="debugButtons" class="advance-button-group col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom">
+			<button id="debugButton" class="btn" onClick="debugAutoAdvanceStart()">Debug</button>
+		</div>
+		<div id="playerListButtons" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom">
+			<button id="noLynchButton" class="btn no-choice-button" onClick="stepSubmit(77, false)">No One</button>
+			<div id="interruptButtons" class="btn-group">
+				<!-- populate dynamically-->
+			</div>
+		</div>
+	</div>
+
+	<div id="choice" class="main-section">
+		<table class="spacer-table">
+			<tr>
+				<td>
+					<div class="pt-section">
+						<button class="pt-button btn" onClick="ptClick()">Peeping Tom</button>
+						<div class="pt-prompt prompt">Peeping Tom Prompt</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="choicePrompt" class="prompt"></div>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<div class="advance-button-group bottom">
+			<div class="block">
+				<button id="choice0" class="choice-button btn" onClick="stepSubmit(0, false)">Choice 1</button>
+				<button id="choice1" class="choice-button btn" onClick="stepSubmit(1, false)">Choice 2</button>
+				<button id="choice2" class="choice-button btn" onClick="stepSubmit(2, false)">Choice 3</button>
+				<button id="choice3" class="choice-button btn" onClick="stepSubmit(3, false)">Choice 4</button>
+				<button id="choice4" class="choice-button btn" onClick="stepSubmit(4, false)">Choice 5</button>
+				<button id="choice77" class="choice-button btn no-choice-button" onClick="stepSubmit(77, false)">None</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="roleList" class="main-section">
+		<div id="roleListPrompt" class="prompt">Player List Prompt</div>
+		<table id="roleListTable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table player-table">
+			<thead>
+				<tr class="player-list-header player-list-row custom-stripe-row">
+					<th class="col-lg-7 col-md-7 col-sm-7 col-xs-7 player-name">
+						캐릭터
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						선택
+					</th>
+				</tr>
+			<tbody id="roleListTableBody">
+				<!--populate dynamically-->
+			</tbody>
+		</table>
+
+		<br>
+	</div>
+
+	<div id="info" class="main-section">
+		<table class="spacer-table">
+			<tr>
+				<td>
+					<div class="pt-section">
+						<button class="pt-button btn" onClick="ptClick()">Peeping Tom</button>
+						<div class="pt-prompt prompt">Peeping Tom Prompt</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="infoPrompt" class="prompt"></div>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<div class="advance-button-group bottom bottom-floor">
+			<div class="block">
+				<button id="infoButton" class="btn" onClick="step()">다음</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="win" class="main-section">
+		<div id="winPrompt" class="prompt"></div>
+		<table id="winPlayerTable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table player-table">
+			<thead>
+				<tr class="player-list-header player-list-row custom-stripe-row">
+					<!--<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						Edit
+					</th>-->
+					<th class="col-lg-7 col-md-7 col-sm-7 col-xs-7 player-name">
+						플레이어 이름
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						팀
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						캐릭터
+					</th>
+					<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						선택
+					</th>
+				</tr>
+			<tbody id="winPlayerTableBody">
+				<!--populate dynamically-->
+			</tbody>
+		</table>
+		<br>
+		<div id="winButtons" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 advance-button-group bottom">
+			<button id="winButton" class="btn" onClick="setupGame()">새로운 게임</button>
+			<button id="winDebugButton" class="btn" onClick="debugAutoAdvanceStart()">Debug</button>
+		</div>
+	</div>
+
+	<div id="confirmModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal_wrapper" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">닫기</span>
+						</button>
+						<h4 id="confirmModalPrompt" class="modal-title">Confirm?</h4>
+					</div>
+					<div class="modal-body">
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+						<button id="confirmModalButton" type="button" class="btn btn-primary" onClick="">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="restoreModal" class="modal" tabindex="-1" role="dialog">
+		<div class="modal_wrapper" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 id="confirmModalPrompt" class="modal-title">저장된 게임이 있습니다.</h4>
+					</div>
+					<div class="modal-body">
+						<button type="button" class="btn btn-primary" onClick="restoreGame()">불러오기</button>
+						<button type="button" class="btn btn-primary" onClick="setupGame()">새 게임</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/jquery.plugin.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modapp-steps.js"></script>
+    <script src="js/modapp.js"></script>
+
+</body>
+
+</html>
