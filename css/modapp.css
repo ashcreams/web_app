@@ -705,7 +705,7 @@ td.role-mystery {
     }
     .main-section {
         padding-top: 88px;
-        width: 768px
+        width: 768px;
     }
 }
 
@@ -878,3 +878,34 @@ td.role-mystery {
     position: relative;
 }
 
+#roleSelectTb{
+    font-family: 'Cinzel', serif;
+    color: #fcc741;
+    font-size: 18px;
+    height: auto !important;
+}
+
+#roleSelectTb p{
+    font-weight: bold !important;
+}
+
+#roleSelectTb tr{
+    border-collapse: separate;
+    border-spacing: 10px; /* 원하는 간격 크기를 설정 */
+}
+
+#teamSelectTb{
+    font-family: 'Cinzel', serif;
+    color: #fcc741;
+    font-size: 18px;
+    height: auto !important;
+}
+
+#teamSelectTb p{
+    font-weight: bold !important;
+}
+
+#teamSelectTb tr{
+    border-collapse: separate;
+    border-spacing: 10px; /* 원하는 간격 크기를 설정 */
+}

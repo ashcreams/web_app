@@ -12,6 +12,9 @@ var resetNames = RESET_NAMES_DEFAULT; //used in deal
 var TIMER_SKIP = 60;
 var TIMER_EXTENSION = 45;
 
+var playerIndex;		// 플레이어 row index
+var notUndoflag = false;
+
 var phaseStyleDict = {"Game Start":		"gs",
 					  "Day":			"dy",
 					  "Night":			"nt",
@@ -136,7 +139,37 @@ var bonusWitchRatiosDict = { 3: -1, //appr
 							20:  1, //spiritualist
 							}
 
+var imgRoleDict = { 0: "priest",
+					1: "judge",
+					2: "gravedigger",
+					3: "apprentice",
+					4: "survivalist",
+					5: "dob",
+					6: "gambler",
+					7: "fanatic",
+					8: "oracle",
+					9: "watchman",
+					10: "hunter",
+					11: "peepingtom",
+					12: "loosecannon",
+					13: "nurse",
+					14: "inquisitor",
+					15: "emissary",
+					16: "acolyte",
+					17: "bod",
+					18: "bomber",
+					19: "assassin",
+					20: "spiritualist",
+					21: "fortuneteller",
+					}	
+
+var imgTeamDict = {	0: "village",
+					1: "clergy",
+				   '-1': "witch",
+				 }						
+
 var computeWitchCount = function(myRoleList) {
+	debugger
 	var rawWitchCount = Math.pow(myRoleList.length - 5, 0.5) + 1;
 	if (myRoleList.length > 5) {
 		var myBonus = 0;
@@ -311,8 +344,8 @@ function clickHandicapButtonWitches() {
 	witchHandicap = true;
 }
 
+// 최초 게임 세팅
 function initGame() {
-	debugger
 	highlightRoleIndexList = [];
 	highlightTeamIndexList = [];
 	var names = [];
@@ -426,6 +459,8 @@ function deal(playerCount) {
 		}
 	}
 
+	console.log(g.playerList);
+
 	g.aliveNum = playerCount;
 	$('#playerListPrompt').html("<p class='modSecret instructions'>Your Village</p>");
 	buildPlayerTable('#playerTableBody');
@@ -434,6 +469,7 @@ function deal(playerCount) {
 	return 0;
 }
 
+// 셔플
 function shuffle(array) {
     var counter = array.length, temp, index;
 
@@ -454,6 +490,7 @@ function shuffle(array) {
     return array;
 }
 
+// 플레이어 추가
 function addPlayer() {
 	if (g.playerList.length >= masterElectiveRoleList.length - masterDisabledRoleList.length) {
 		return 1;
@@ -806,7 +843,7 @@ function buildPlayerTable(target) {
 		if (g.hideRoles && target != '#winPlayerTableBody') {
 			myTable += " role-mystery'>?";
 		} else {
-			myTable += " role-tag' onclick=teamSelect()>" + abbrevTeamDict[p.team];
+			myTable += " role-tag' onclick=teamSelect("+i+")>" + abbrevTeamDict[p.team];
 		}
 		myTable += "</td>";
 
@@ -817,7 +854,7 @@ function buildPlayerTable(target) {
 		if (g.hideRoles && target != '#winPlayerTableBody') {
 			myTable += " role-mystery'>?";
 		} else {
-			myTable += " role-tag' onclick=roleSelect()>" + abbrevRoleDict[p.role];
+			myTable += " role-tag' onclick=roleSelect("+i+")>" + abbrevRoleDict[p.role];
 		}
 		myTable += "</td>";
 
@@ -835,19 +872,101 @@ function buildPlayerTable(target) {
 	$(".player-name-input").hide();
 }
 
-function teamSelect() {
-	debugger
+// 팀 변경
+function teamSelect(i) {
+	notUndoflag = true;
+	$('.undo-button').addClass("disabled");
 	$('#playerList').hide();
 	$('#teamSelect').show();
+	$('#teamSelectTb').show();
+	playerIndex = i;
+	console.log("--전체 인원 : "+ masterMandatoryRoleList.length);
+	console.log(g.playerList);
+	console.log("--마녀 인원 : "+ computeWitchCount(masterMandatoryRoleList))
+	console.log(g);
 }
 
-function roleSelect() {
-	debugger
+// 캐릭터 변경
+function roleSelect(i) {
+	notUndoflag = true;
+	$('.undo-button').addClass("disabled");
 	$('#playerList').hide();
 	$('#roleSelect').show();
 	$('#roleSelectTb').show();
+	playerIndex = i;
 }
 
+function teamChange(alt) {
+	g.playerList[playerIndex].team = parseInt(alt);
+
+	var excImg = $('#playerTableBody').find('tr').eq(playerIndex).find('td').eq(2);
+	var newTeamImage = "img/teamicons/teamicon_" + imgTeamDict[alt] + ".png"
+	excImg.find('img').attr('src', newTeamImage)
+	
+	$('#teamSelect').hide();
+	$('#teamSelectTb').hide();
+	$('#playerList').show();
+	console.log(g.playerList);
+
+	console.log("전체 인원 : "+ masterMandatoryRoleList.length);
+	console.log("마녀 인원 : "+ computeWitchCount(masterMandatoryRoleList))
+}
+
+function roleChange(alt) {
+	g.playerList[playerIndex].role = parseInt(alt);
+	
+	if(checkDuplicateRoles(g.playerList) === true){
+		var excImg = $('#playerTableBody').find('tr').eq(playerIndex).find('td').eq(3);
+		var newRoleImage = "img/roleicons/roleicon_" + imgRoleDict[alt] + ".jpg"
+		excImg.find('img').attr('src', newRoleImage)
+		if(alt == 0 || alt == 16){
+			var clergyImageSource = "img/teamicons/teamicon_clergy.png"
+			$('#playerTableBody').find('tr').eq(playerIndex).find('td').eq(2).find('img').attr('src', clergyImageSource);
+			g.playerList[playerIndex].team = parseInt(1);
+		}
+		
+		$('#roleSelect').hide();
+		$('#roleSelectTb').hide();
+		$('#playerList').show();
+
+		console.log(g.playerList);
+	}	
+}
+
+function cancelChange(selectTp) {
+	if(selectTp == 0){
+		$('#teamSelect').hide();
+		$('#teamSelectTb').hide();
+		$('#playerList').show();
+	}else{
+		$('#roleSelect').hide();
+		$('#roleSelectTb').hide();
+		$('#playerList').show();
+	}
+}
+
+// 중복된 'role' 값을 검사하는 함수
+function checkDuplicateRoles(arr) {
+	var roleSet = new Set(); // 중복 체크를 위한 Set 객체
+  
+	for (var i = 0; i < arr.length; i++) {
+	  var currentRole = arr[i].role;
+  
+	  // 이미 Set에 존재하는 역할이라면 중복이므로 에러 출력
+	  if (roleSet.has(currentRole)) {
+		console.error('에러: 중복된 role 값이 발견되었습니다 -', currentRole);
+		alert('이미 선택된 캐릭터가 있습니다.', currentRole);
+		return false;
+	  }
+  
+	  // Set에 현재 역할 추가
+	  roleSet.add(currentRole);
+	}
+  
+	console.log('모든 role 값이 유일합니다.')
+	return true;
+}  
+  
 function timerReset() {
 	g.pausedTimeLeft = g.currentStepLength;
 	g.targetTime = null;
@@ -1683,9 +1802,13 @@ function confirmModal(promptText, target) {
 	$('#confirmModal').modal('show');
 }
 
+// 프로세스 뒤로가기
 function processUndo() {
-	if (g.currentPhase == "Deal") {
+	if (g.currentPhase == "Deal" && notUndoflag == false) {
 		setupGame();
+	}
+	else if(g.currentPhase == "Deal" && notUndoflag == true) {
+		return;
 	}
 	if (gameStack.length < 2) {
 		return;
