@@ -14,7 +14,8 @@
     <!-- <title>WitchHunt Mod Tool</title> -->
 	<title>Test</title>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="css/jquery.countdown.css" rel="stylesheet" type="text/css">
     <link href="css/modapp.css" rel="stylesheet" type="text/css">
 
@@ -107,132 +108,136 @@
     </nav>
 
 	<!-- 팀 선택 -->
-	<div id="teamSelect" class="main-section">
-		<span id='teamTest'>teamTest</span>
-	</div>
-
-	<!-- 캐릭터 선택 -->
-	<!-- <div id="roleSelect" class="main-section">
-
-		<div id="roleSelectTable" class="roleSelectTable"></div>
-			<div style="overflow:hidden;"><img src="img/roleicons/roleicon_acolyte.jpg">aaaaa
-			<img src="img/roleicons/roleicon_acolyte.jpg">bbbbb
-			<img src="img/roleicons/roleicon_acolyte.jpg">ccccc
-			<img src="img/roleicons/roleicon_acolyte.jpg">ddddd
-			<img src="img/roleicons/roleicon_acolyte.jpg">eeeee
-			<img src="img/roleicons/roleicon_acolyte.jpg">fffff
-			<img src="img/roleicons/roleicon_acolyte.jpg">ggggg</div>
-	</div> -->
-
-	<div id="roleSelect" class="main-section roleSelectTable">
-		<table id="roleSelectTb" class="main-section roleTable" style="background-color:#6b1911">
+	<div id="teamSelect" class="main-section teamSelectTable">
+		<table id="teamSelectTb" class="main-section teamTable">
 			<tbody>
 				<tr>
 					<td>
-						<img src="img/roleicons/roleicon_acolyte.jpg" alt="Acolyte">
-						<p>Acoltye</p>
+						<img src="img/teamicons/teamicon_village.png" alt=0 onclick="teamChange(alt)">
+						<p>Village</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_apprentice.jpg" alt="Apprentice">
+						<img src="img/teamicons/teamicon_witch.png" alt=-1 onclick="teamChange(alt)">
+						<p>Witch</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="cancleButtonBox" class="advance-button-group col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom" style="margin-top: 20px;">
+			<button id="cancleButton" class="btn" onClick="cancelChange(0)">취소</button>
+		</div>
+	</div>
+
+	<!-- 캐릭터 선택 -->
+	<div id="roleSelect" class="main-section roleSelectTable">
+		<table id="roleSelectTb" class="main-section roleTable">
+			<tbody>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_priest.jpg" alt=0 onclick="roleChange(alt)">
+						<p>Priest</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_judge.jpg" alt=1 onclick="roleChange(alt)">
+						<p>Judge</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_gravedigger.jpg" alt=2 onclick="roleChange(alt)">
+						<p>Gravedigger</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_apprentice.jpg" alt=3 onclick="roleChange(alt)">
 						<p>Apprentice</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_assassin.jpg" alt="Assassin">
-						<p>Assassin</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_bod.jpg" alt="B.O.D">
-						<p>B.O.D</p>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<img src="img/roleicons/roleicon_bomber.jpg" alt="Bomber">
-						<p>Bomber</p>
+						<img src="img/roleicons/roleicon_survivalist.jpg" alt=4 onclick="roleChange(alt)">
+						<p>Survivalist</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_dob.jpg" alt="D.O.B">
+						<img src="img/roleicons/roleicon_dob.jpg" alt=5 onclick="roleChange(alt)">
 						<p>D.O.B</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_emissary.jpg" alt="Emissary">
-						<p>Emissary</p>
+						<img src="img/roleicons/roleicon_Gambler.jpg" alt=6 onclick="roleChange(alt)">
+						<p>Gambler</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_fanatic.jpg" alt="Fanatic">
+						<img src="img/roleicons/roleicon_fanatic.jpg" alt=7 onclick="roleChange(alt)">
 						<p>Fanatic</p>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<img src="img/roleicons/roleicon_fortuneteller.jpg" alt="Fortuneteller">
-						<p>Fortuneteller</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_gambler.jpg" alt="Gambler">
-						<p>Gambler</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_gravedigger.jpg" alt="Gravedigger">
-						<p>Gravedigger</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_hunter.jpg" alt="Hunter">
-						<p>Hunter</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src="img/roleicons/roleicon_inquisitor.jpg" alt="Inquisitor">
-						<p>Inquisitor</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_judge.jpg" alt="Judge">
-						<p>Judge</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_loosecannon.jpg" alt="Loosecannon">
-						<p>Loosecannon</p>
-					</td>
-					<td>
-						<img src="img/roleicons/roleicon_nurse.jpg" alt="Nurse">
-						<p>Nurse</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src="img/roleicons/roleicon_oracle.jpg" alt="Oracle">
+						<img src="img/roleicons/roleicon_oracle.jpg" alt=8 onclick="roleChange(alt)">
 						<p>Oracle</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_peepingtom.jpg" alt="Peepingtom">
-						<p>Peepingtom</p>
+						<img src="img/roleicons/roleicon_watchman.jpg" alt=9 onclick="roleChange(alt)">
+						<p>Watchman</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_priest.jpg" alt="Priest">
-						<p>Priest</p>
+						<img src="img/roleicons/roleicon_hunter.jpg" alt=10 onclick="roleChange(alt)">
+						<p>Hunter</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_spiritualist.jpg" alt="Spiritualist">
-						<p>Spiritualist</p>
+						<img src="img/roleicons/roleicon_peepingtom.jpg" alt=11 onclick="roleChange(alt)">
+						<p>Peeping Tom</p>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<img src="img/roleicons/roleicon_survivalist.jpg" alt="Survivalist">
-						<p>Survivalist</p>
+						<img src="img/roleicons/roleicon_loosecannon.jpg" alt=12 onclick="roleChange(alt)">
+						<p>Loose Cannon</p>
 					</td>
 					<td>
-						<img src="img/roleicons/roleicon_watchman.jpg" alt="Watchman">
-						<p>Watchman</p>
+						<img src="img/roleicons/roleicon_nurse.jpg" alt=13 onclick="roleChange(alt)">
+						<p>Nurse</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_inquisitor.jpg" alt=14 onclick="roleChange(alt)">
+						<p>Inquisitor</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_emissary.jpg" alt=15 onclick="roleChange(alt)">
+						<p>Emissary</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_acolyte.jpg" alt=16 onclick="roleChange(alt)">
+						<p>Acolyte</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_bod.jpg" alt=17 onclick="roleChange(alt)">
+						<p>B.O.D</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_bomber.jpg" alt=18 onclick="roleChange(alt)">
+						<p>Bomber</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_assassin.jpg" alt=19 onclick="roleChange(alt)">
+						<p>Assassin</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/roleicons/roleicon_spiritualist.jpg" alt=20 onclick="roleChange(alt)">
+						<p>Spiritualist</p>
+					</td>
+					<td>
+						<img src="img/roleicons/roleicon_fortuneteller.jpg" alt=21 onclick="roleChange(alt)">
+						<p>Fortune Teller</p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div id="cancleButtonBox" class="advance-button-group col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom" style="margin-top: 20px;">
+			<button id="cancleButton" class="btn" onClick="cancelChange(1)">취소</button>
+		</div>
     </div>
-
-
-
 
 	<div id="gameSettings" class="main-section">
 		<div id="selectRolesPrompt" class="prompt"><p class="modSecret instructions">캐릭터를 선택해 주세요.</p></div>
