@@ -263,9 +263,9 @@ function STEP_oracle() {
 		}
 	}
 	var myMessage = "";
-	myMessage += "<p class='modVoice'>I am going to show the Oracle a random person who is a simple Village Peasant.</p>";
-	myMessage += "<p class='modVoice'>This means they can't be a Witch, nor the Priest.  Just a Villager with a normal character.</p><br>";
-	myMessage += "<p class='modShow'>(Point to " + pn(targetID) + ".)</p>";
+	myMessage += "<p class='modVoice'>Oracle에게 확실한 마을 주민이 누구인지 알려드리겠습니다.</p>";
+	myMessage += "<p class='modVoice'>이 사람은 마녀, Priest가 아닙니다. 일반 마을 주민입니다.</p><br>";
+	myMessage += "<p class='modShow'>(" + pn(targetID) + "을(를) 가르키세요.)</p>";
 	myMessage += "<br><p class='modVoice'>Thank you Oracle, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -280,7 +280,7 @@ STEP_oracle.allow_PT = true;
 function STEP_initBomber(target) {
 	myMessage = "";
 	if (target == 77) {
-		myMessage += "<p class='modVoice'>The Bomber has decided we will not have a Bomb this game.</p>";
+		myMessage += "<p class='modVoice'>Bomber가 이번 게임에 폭탄을 사용하지 않기로 결정했습니다.</p>";
 	} else {
 		var p = g.playerList[target];
 		g.bombHolder = target;
@@ -290,7 +290,7 @@ function STEP_initBomber(target) {
 			myMessage += "<p class='modSecret'>(The Bomber gave the Bomb to " + pn(target) + ".)</p>";
 		}
 	}
-	myMessage += "<p class='modVoice'>Thank you Bomber, 눈을 감아주세요.</p>";
+	myMessage += "<p class='modVoice'>Bomber, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -1584,7 +1584,7 @@ function STEP_demons2(target) {
 	}
 	g.hauntingTargetList.push(target);
 	if (demonCount == 0) {
-		myMessage += "<p class='modSecret'>(There are no demons yet.)</p>";
+		myMessage += "<p class='modSecret'>(악마가 아직 없습니다.)</p>";
 		g.hauntingTargetList = [];
 	} else if (target == 77 || g.hauntingTargetList[0] == 77 || g.hauntingTargetList[0] == target) {
 		myMessage += "<p class='modSecret'>(The Demons could not decide who to Meddle with.)</p>";

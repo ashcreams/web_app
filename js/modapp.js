@@ -185,6 +185,10 @@ var computeWitchCount = function(myRoleList) {
 	{
 		rawWitchCount = 5;
 	}
+	if(isNaN(Math.floor(rawWitchCount)) == true){
+		return 0;
+	}
+	
 	return Math.floor(rawWitchCount);
 }
 
@@ -874,28 +878,35 @@ function buildPlayerTable(target) {
 
 // 팀 변경
 function teamSelect(i) {
-	notUndoflag = true;
-	$('.undo-button').addClass("disabled");
-	$('#playerList').hide();
-	$('#teamSelect').show();
-	$('#teamSelectTb').show();
-	playerIndex = i;
-	console.log("--전체 인원 : "+ masterMandatoryRoleList.length);
-	console.log(g.playerList);
-	console.log("--마녀 인원 : "+ computeWitchCount(masterMandatoryRoleList))
-	console.log(g);
+	if (g.currentPhase == "Deal") {
+		notUndoflag = true;
+		$('.undo-button').addClass("disabled");
+		$('#playerList').hide();
+		$('#teamSelect').show();
+		$('#teamSelectTb').show();
+		playerIndex = i;
+	}else{
+		return
+	}
+	
+
 }
 
 // 캐릭터 변경
 function roleSelect(i) {
-	notUndoflag = true;
-	$('.undo-button').addClass("disabled");
-	$('#playerList').hide();
-	$('#roleSelect').show();
-	$('#roleSelectTb').show();
-	playerIndex = i;
+	if (g.currentPhase == "Deal") {
+		notUndoflag = true;
+		$('.undo-button').addClass("disabled");
+		$('#playerList').hide();
+		$('#roleSelect').show();
+		$('#roleSelectTb').show();
+		playerIndex = i;
+	}else{
+		return
+	}
 }
 
+// 팀 변경 클릭
 function teamChange(alt) {
 	g.playerList[playerIndex].team = parseInt(alt);
 
@@ -908,10 +919,9 @@ function teamChange(alt) {
 	$('#playerList').show();
 	console.log(g.playerList);
 
-	console.log("전체 인원 : "+ masterMandatoryRoleList.length);
-	console.log("마녀 인원 : "+ computeWitchCount(masterMandatoryRoleList))
 }
 
+// 캐릭터 변경 클릭
 function roleChange(alt) {
 	g.playerList[playerIndex].role = parseInt(alt);
 	
@@ -1788,6 +1798,8 @@ function updateView() {
 	} else {
 		$('.pt-section').hide();
 	}
+	console.log("---------game data---------");
+	console.log(g);
 }
 
 function ptClick() {
