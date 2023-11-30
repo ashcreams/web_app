@@ -74,9 +74,9 @@ function STEP_townSleepInstructions() {
 	}
 	var myMessage = "";
 	myMessage += "<br><p class='modVoice'>지금부터 게임을 시작하겠습니다. 모든 플레이어는 각자 자신의 카드를 확인해 주세요.</p>";
-	myMessage += "<br><p class='modVoice'>게임을 처음 시작할 때, 그리고 매일 밤, 사회자는 여러분들에게 밤이 되었으니 눈을 감아달라고 할 것입니다.</p>";
-	myMessage += "<br><p class='modVoice'>그러면 여러분들은 고개를 숙여 눈을 감아야 합니다. 소리를 내어서도 안되고 어떤 소통도 할 수 없습니다.</p>";
-	myMessage += "<br><p class='modVoice'>사회자가 일어나라고 하는 캐릭터들은 진행에 따라 조용하게 액션을 하셔야 합니다.</p>";
+	myMessage += "<br><p class='modVoice'>게임을 처음 시작할 때, 그리고 매일 밤, 사회자는 여러분들에게 밤이 되었으므로 눈을 감아달라고 할 것입니다.</p>";
+	myMessage += "<br><p class='modVoice'>그다음 여러분들은 고개를 숙여 눈을 감아야 합니다. 소리를 내어서도 안되고 어떤 소통도 할 수 없습니다.</p>";
+	myMessage += "<br><p class='modVoice'>사회자가 일어나라고 하는 캐릭터는 진행에 따라 조용하게 액션을 하셔야 합니다.</p>";
 	if (!hasPT) {
 		myMessage += "<br><p class='modVoice'>자, 주민 여러분. 모두 눈을 감아주세요. 게임을 시작하겠습니다.</p>";
 	}
@@ -266,7 +266,7 @@ function STEP_oracle() {
 	myMessage += "<p class='modVoice'>Oracle에게 확실한 마을 주민이 누구인지 알려드리겠습니다.</p>";
 	myMessage += "<p class='modVoice'>이 사람은 마녀, Priest가 아닙니다. 일반 마을 주민입니다.</p><br>";
 	myMessage += "<p class='modShow'>(" + pn(targetID) + "을(를) 가르키세요.)</p>";
-	myMessage += "<br><p class='modVoice'>Thank you Oracle, 눈을 감아주세요.</p>";
+	myMessage += "<br><p class='modVoice'>Oracle, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -285,9 +285,9 @@ function STEP_initBomber(target) {
 		var p = g.playerList[target];
 		g.bombHolder = target;
 		if (p.role == 15) {
-			myMessage += "<p class='modSecret'>(The Bomber gave themselves the Bomb; they clearly know how to have a good time.)</p>";
+			myMessage += "<p class='modSecret'>(Bomber는 폭탄을 자기 자신에게 주었습니다. 예능을 아는 사람이군요.)</p>";
 		} else {
-			myMessage += "<p class='modSecret'>(The Bomber gave the Bomb to " + pn(target) + ".)</p>";
+			myMessage += "<p class='modSecret'>(Bomber가 " + pn(target) + "에게 폭탄을 넘겼습니다.)</p>";
 		}
 	}
 	myMessage += "<p class='modVoice'>Bomber, 눈을 감아주세요.</p>";
@@ -298,9 +298,9 @@ STEP_initBomber.role_requirement = 18;
 STEP_initBomber.role_link = 18;
 STEP_initBomber.prompt_type = "target";
 STEP_initBomber.prompt_subject = "Bomber";
-STEP_initBomber.prompt_string = "<p class='modVoice'>Bomber, who would you like to give the Bomb to?</p>";
-STEP_initBomber.prompt_string += "<p class='modVoice'>Whoever has the Bomb can pass it (like a hot potato) at the end of each day.</p>";
-STEP_initBomber.prompt_string += "<p class='modVoice'>You can detonate it on a night of your choice.</p>";
+STEP_initBomber.prompt_string = "<p class='modVoice'>Bomber, 어떤 플레이어에게 폭탄을 주겠습니까?</p>";
+STEP_initBomber.prompt_string += "<p class='modVoice'>폭탄을 가진 사람은 매일 낮 마지막에 폭탄을 넘길 수 있습니다.</p>";
+STEP_initBomber.prompt_string += "<p class='modVoice'>당신은 밤에 폭탄을 터트릴지 선택할 수 있습니다.</p>";
 STEP_initBomber.timer = TIMER_SHORT;
 STEP_initBomber.allow_PT = true;
 
@@ -324,18 +324,18 @@ function STEP_dayStart() {
 			g.deathLocationStack = [];
 		}
 
-		myMessage += "<p class='modVoice'>And with that, the town can wake up!</p>";
+		myMessage += "<p class='modVoice'>자, 마을주민 여러분 모두 일어나세요!</p>";
 		if (g.bombHolder != null) {
-			myMessage += "<p class='modVoice'>(Oh, look at that. It seems " + pn(g.bombHolder) + " has the Bomb!)</p>";
+			myMessage += "<p class='modVoice'>(오.. 이것 보세요. " + pn(g.bombHolder) + "가 폭탄을 가지고 있네요!)</p>";
 		}
-		myMessage += "<p class='modVoice'>It is now Day 1!</p>";
-		myMessage += "<p class='modVoice'>You can choose to hang a target by majority vote, but remember that the decision always goes to the Judge if you cannot agree.</p>";
-		myMessage += "<p class='modVoice'>I will allow you to change your votes freely until the time limit for the day is up, but at that point I will ask you to immediately freeze your votes.</p>";
-		myMessage += "<p class='modVoice'>Please vote with both arms as visibly as possible; this will promote discussion and help track down the Witches!</p>";
-		myMessage += "<p class='modVoice'><b>Ready?</b></p>";
+		myMessage += "<p class='modVoice'>1번째 날입니다!</p>";
+		myMessage += "<p class='modVoice'>다수결로 지목당한 플레이어는 처형됩니다. 하지만 투표가 부결된다면 Judge에게 결정이 주어집니다.</p>";
+		myMessage += "<p class='modVoice'>제한시간이 될 때까지 자유롭게 투표는 바꿀 수 있지만, 제한시간이 되면 투표가 동결됩니다.</p>";
+		myMessage += "<p class='modVoice'>가능한 팔이 잘 보이게 뚜렷하게 투표를 해주세요. 원활한 진행에 도움이 됩니다.</p>";
+		myMessage += "<p class='modVoice'><b>이제 준비되셨나요?</b></p>";
 	} else if (g.nightKillList.length == 0) {
-		myMessage += "<p class='modVoice'>Town, wake up.</p>";
-		myMessage += "<p class='modVoice'>No one was targeted in the night.</p>";
+		myMessage += "<p class='modVoice'>마을주민 여러분, 일어나세요.</p>";
+		myMessage += "<p class='modVoice'>이번 밤에 아무도 지목당하지 않았습니다.</p>";
 	} else {
 		var fullList = [];
 		var attemptsDict = {};
@@ -493,13 +493,13 @@ function STEP_lynch(target) {
 
 	var myMessage = "";
 	if (target == 77) {
-		myMessage += "<p class='modVoice'>The town has failed to hang anyone.</p>";
-		myMessage += "<p class='modVoice'>Town go to sleep, we're going to the Judge!</p>";
+		myMessage += "<p class='modVoice'>투표가 진행되지 않았습니다.</p>";
+		myMessage += "<p class='modVoice'>마을주민 여러분, 모두 눈을 감아주세요. Judge에게 심판이 내려질 것입니다!</p>";
 		g.stepList.unshift(g.stepList.shift(), "judgeMultiplex");
 	} else if (g.playerList[target].role == 15 && g.cycleNum <= 3) { //emissary
-		myMessage += "<p class='modVoice'>The town chose to hang " + pn(target);
+		myMessage += "<p class='modVoice'>여러분은 " + pn(target) + "(을/를) 처형시켰습니다.";
 		myMessage += ", but " + pn(target) + " mysteriously survived!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Emissary.)</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + " 는 Emissary 입니다.)</p>";
 		myMessage += "<p class='modVoice'>The town goes to sleep disappointed.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].extraLives > 0) {
@@ -648,7 +648,7 @@ function STEP_nurse(target) {
 	var p = g.playerList[targetID];
 	var myMessage = "";
 	if (p.team == 1) {
-		myMessage += "<p class='modVoice'>The Nurse cannot give extra lives to holy characters.</p>";
+		myMessage += "<p class='modVoice'>Nurse는 holy 캐릭터에게 추가 생명을 줄 수 없습니다.</p>";
 	} else {
 		g.log += "z+";
 		logPlayer(targetID, 0);
@@ -1417,7 +1417,7 @@ function STEP_gravedigger() {
 		}
 	}
 	g.gravediggerTrigger = false;
-	myMessage += "<p class='modVoice'>Thank you Gravedigger, 눈을 감아주세요.</p>";
+	myMessage += "<p class='modVoice'>Gravedigger, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -1712,7 +1712,7 @@ function STEP_angelConclusion() {
 			}
 			break;
 	}
-	myMessage += "<p class='modVoice'>Thank you Angels and Demons.</p>";
+	myMessage += "<p class='modVoice'>Angels and Demons.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -1943,7 +1943,7 @@ function STEP_priest(target) {
 	} else {
 		myMessage += "<p class='modVoice'>Thumbs up if they are in the Witch Coven, thumbs down if not.</p>";
 	}
-	myMessage += "<p class='modVoice'>Thank you Priest, 눈을 감아주세요.</p>";
+	myMessage += "<p class='modVoice'>Priest, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -2002,7 +2002,7 @@ function STEP_inquisitor(target) {
 		//first time reminders
 		myMessage += "<p class='modVoice'>Inquisitor, I'm going to show you what kind of character your target has.</p>";
 	}
-	myMessage += "<p class='modVoice'>Thank you Inquisitor, 눈을 감아주세요.</p>";
+	myMessage += "<p class='modVoice'>Inquisitor, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -2052,7 +2052,7 @@ function STEP_hunter(target) {
 			myMessage += "<p class='modSecret'>The Hunter shot " + pn(target) + ".</p>";
 		}
 	}
-	myMessage += "<p class='modVoice'>Thank you Hunter, 눈을 감아주세요.</p>";
+	myMessage += "<p class='modVoice'>Hunter, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -2102,7 +2102,7 @@ function STEP_bomber(target) {
 			g.wakeupList.push(g.bombHolder);
 		}
 	}
-	myMessage += "<p class='modVoice'>Thank you Bomber, 눈을 감아주세요.</p>";
+	myMessage += "<p class='modVoice'>Bomber, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -2151,7 +2151,7 @@ function STEP_watchman() {
 	} else {
 		myMessage += "<p class='modShow'>(Somehow, everyone woke up.  This should be impossible. *shrug*)</p>";
 	}
-	myMessage += "<br><p class='modVoice'>Thank you Watchman, 눈을 감아주세요.</p>";
+	myMessage += "<br><p class='modVoice'>Watchman, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }
@@ -2179,7 +2179,7 @@ function STEP_witchHandicap() {
 	} else {
 		myMessage += "<p class='modShow'>(Point to " + pn(g.lastPriestCheck) + ".)</p>";
 	}
-	myMessage += "<br><p class='modVoice'>Thank you Witches, 눈을 감아주세요.</p>";
+	myMessage += "<br><p class='modVoice'>Witches, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
 }

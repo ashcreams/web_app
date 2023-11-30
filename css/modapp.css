@@ -599,6 +599,9 @@ td.role-mystery {
         padding-top: 130px;
         width: 100%
     }
+    .roleTable{
+        width: 100%
+    }
 	.header #titleCell {
     	text-align: center;
     	height: 74px;
@@ -883,15 +886,18 @@ td.role-mystery {
     color: #fcc741;
     font-size: 18px;
     height: auto !important;
+    border-collapse: separate;
+    border-spacing: 0 20px; /* 원하는 간격 크기를 설정 */
 }
 
 #roleSelectTb p{
     font-weight: bold !important;
+    font-size: 15px;
 }
 
-#roleSelectTb tr{
+#roleSelectTb tbody{
     border-collapse: separate;
-    border-spacing: 10px; /* 원하는 간격 크기를 설정 */
+    border-spacing: 0 20px; /* 원하는 간격 크기를 설정 */
 }
 
 #teamSelectTb{
