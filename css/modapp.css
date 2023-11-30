@@ -909,3 +909,10 @@ td.role-mystery {
     border-collapse: separate;
     border-spacing: 10px; /* 원하는 간격 크기를 설정 */
 }
+
+.teamSymbol{
+    position: relative;
+    width: auto;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+}
