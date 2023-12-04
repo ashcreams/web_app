@@ -498,26 +498,26 @@ function STEP_lynch(target) {
 		g.stepList.unshift(g.stepList.shift(), "judgeMultiplex");
 	} else if (g.playerList[target].role == 15 && g.cycleNum <= 3) { //emissary
 		myMessage += "<p class='modVoice'>여러분은 " + pn(target) + "(을/를) 처형시켰습니다.";
-		myMessage += ", but " + pn(target) + " mysteriously survived!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " 는 Emissary 입니다.)</p>";
-		myMessage += "<p class='modVoice'>The town goes to sleep disappointed.</p>";
+		myMessage += ", 하지만 " + pn(target) + "(은/는)(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + " (은/는) Emissary 입니다.)</p>";
+		myMessage += "<p class='modVoice'>마을주민들은 실망스러워 하며 잠에 듭니다. 눈을 감아주세요.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].extraLives > 0) {
 		g.playerList[target].extraLives -= 1;
-		myMessage += "<p class='modVoice'>The town chose to hang " + pn(target);
-		myMessage += ", but " + pn(target) + " mysteriously survived!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " had an extra life.)</p>";
-		myMessage += "<p class='modVoice'>The town goes to sleep disappointed.</p>";
+		myMessage += "<p class='modVoice'>여러분은 " + pn(target) + "(을/를) 처형시켰습니다.";
+		myMessage += ", but " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) 추가 생명을 얻었습니다.)</p>";
+		myMessage += "<p class='modVoice'>마을주민들은 실망스러워 하며 잠에 듭니다. 눈을 감아주세요.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest
-		myMessage += "<p class='modVoice'>The town chose to hang " + pn(target);
-		myMessage += ", but " + pn(target) + " mysteriously survived!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
-		myMessage += "<p class='modVoice'>The town goes to sleep disappointed.</p>";
+		myMessage += "<p class='modVoice'>여러분은 " + pn(target) + "(을/를) 처형시켰습니다.";
+		myMessage += ", but " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) Priest입니다. 마을주민에게는 힘든 상황이 되겠네요.)</p>";
+		myMessage += "<p class='modVoice'>마을주민들은 실망스러워 하며 잠에 듭니다. 눈을 감아주세요.</p>";
 		myMessage += onSurvival(target);
 	} else {
-		myMessage += "<p class='modVoice'>The town chose to hang " + pn(target) + "!</p>";
-		myMessage += "<p class='modVoice'>" + pn(target) + " is now dead; town, go to sleep.</p>";
+		myMessage += "<p class='modVoice'>여러분은 " + pn(target) + "(을/를) 처형시켰습니다!</p>";
+		myMessage += "<p class='modVoice'>" + pn(target) + "(은/는) 사망했습니다; 주민 여러분, 눈을 감아주세요.</p>";
 		kill(target);
 		onDeath(target);
 	}
@@ -569,17 +569,17 @@ function STEP_looseCannon(target) {
 			if (g.playerList[target].extraLives > 0) {
 				g.playerList[target].extraLives -= 1;
 				myMessage += "<p class='modVoice'>" + pn(myID) + " the Loose Cannon sacrificed an extra life to hang " + pn(target) + ".</p>";
-				myMessage += "<p class='modVoice'>Except it turns out, " + pn(target) + " mysteriously survived too!</p>";
+				myMessage += "<p class='modVoice'>Except it turns out, " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다 too!</p>";
 				myMessage += "<p class='modSecret'>(" + pn(target) + " had an extra life.)</p>";
 				targetDies = false;
 			} else if (g.playerList[target].role == 18 && g.cycleNum < 4) { //emissary
 				myMessage += "<p class='modVoice'>" + pn(myID) + " the Loose Cannon sacrificed an extra life to hang " + pn(target) + ".</p>";
-				myMessage += "<p class='modVoice'>Except it turns out, " + pn(target) + " mysteriously survived too!</p>";
+				myMessage += "<p class='modVoice'>Except it turns out, " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다 too!</p>";
 				myMessage += "<p class='modSecret'>(" + pn(target) + " is the Emissary.)</p>";
 				targetDies = false;
 			} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest, handicap
 				myMessage += "<p class='modVoice'>" + pn(myID) + " the Loose Cannon sacrificed an extra life to hang " + pn(target) + ".</p>";
-				myMessage += "<p class='modVoice'>Except it turns out, " + pn(target) + " mysteriously survived too!</p>";
+				myMessage += "<p class='modVoice'>Except it turns out, " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다 too!</p>";
 				myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
 				targetDies = false;
 			} else {
@@ -590,17 +590,17 @@ function STEP_looseCannon(target) {
 			if (g.playerList[target].extraLives > 0) {
 				g.playerList[target].extraLives -= 1;
 				myMessage += "<p class='modVoice'>" + pn(myID) + " the Loose Cannon sacrificed themselves to hang " + pn(target) + ".</p>";
-				myMessage += "<p class='modVoice'>But " + pn(target) + " mysteriously survived.  How embarrassing!</p>";
+				myMessage += "<p class='modVoice'>But " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다.  How embarrassing!</p>";
 				myMessage += "<p class='modSecret'>(" + pn(target) + " had an extra life.)</p>";
 				targetDies = false;
 			} else if (g.playerList[target].role == 18 && g.cycleNum < 4) { //emissary
 				myMessage += "<p class='modVoice'>" + pn(myID) + " the Loose Cannon sacrificed themselves to hang " + pn(target) + ".</p>";
-				myMessage += "<p class='modVoice'>But " + pn(target) + " mysteriously survived.  How embarrassing!</p>";
+				myMessage += "<p class='modVoice'>But " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다.  How embarrassing!</p>";
 				myMessage += "<p class='modSecret'>(" + pn(target) + " is the Emissary.)</p>";
 				targetDies = false;
 			} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest, handicap
 				myMessage += "<p class='modVoice'>" + pn(myID) + " the Loose Cannon sacrificed themselves to hang " + pn(target) + ".</p>";
-				myMessage += "<p class='modVoice'>But " + pn(target) + " mysteriously survived.  How embarrassing!</p>";
+				myMessage += "<p class='modVoice'>But " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다.  How embarrassing!</p>";
 				myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
 				targetDies = false;
 			} else {
@@ -654,9 +654,9 @@ function STEP_nurse(target) {
 		logPlayer(targetID, 0);
 		if (target == 13) { //self target
 			p.extraLives += 1;
-			myMessage += "<p class='modVoice'>" + pn(myID) + " the Nurse gave themselves an extra life.</p>";
+			myMessage += "<p class='modVoice'>Nurse "+ pn(myID) + "(은/는) 본인에게 추가 생명을 주었습니다.</p>";
 		} else {
-			myMessage += "<p class='modVoice'>" + pn(myID) + " the Nurse gave the " + masterRoleDict[target] + " an extra life, assuming that the " + masterRoleDict[target] + " is still alive.</p>";
+			myMessage += "<p class='modVoice'>Nurse " + pn(myID) + "(은/는) " + masterRoleDict[target] + "에게 추가 생명을 주었습니다.an extra life, assuming that the " + masterRoleDict[target] + " is still alive.</p>";
 			if (p.deathCycleNum == null) {
 				p.extraLives += 1;
 			}
@@ -672,7 +672,7 @@ STEP_nurse.role_requirement = 13;
 STEP_nurse.role_link = 13;
 STEP_nurse.prompt_type = "role";
 STEP_nurse.prompt_subject = null;
-STEP_nurse.prompt_string = "<p class='modVoice'>Which character is the Nurse giving an extra life?</p>";
+STEP_nurse.prompt_string = "<p class='modVoice'>Nurse는 어떤 캐릭터에게 추가 생명을 주겠습니까?</p>";
 STEP_nurse.no_target_invalid = true;
 STEP_nurse.timer = TIMER_SHORT;
 
@@ -687,7 +687,7 @@ STEP_assassin1.role_requirement = 19;
 STEP_assassin1.role_link = 19;
 STEP_assassin1.prompt_type = "target-auto";
 STEP_assassin1.prompt_subject = null;
-STEP_assassin1.prompt_string = "<p class='modVoice'>Who is the Assassin trying to kill?</p>";
+STEP_assassin1.prompt_string = "<p class='modVoice'>Assassin은 누구를 암살하겠습니까?</p>";
 STEP_assassin1.no_target_invalid = true;
 STEP_assassin1.timer = TIMER_SHORT;
 
@@ -847,9 +847,9 @@ function STEP_judge(target) {
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest
 		myMessage += "<p class='modVoice'>The town chose to hang " + pn(target);
-		myMessage += ", but " + pn(target) + " mysteriously survived!</p>";
+		myMessage += ", but " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
 		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
-		myMessage += "<p class='modVoice'>The town goes to sleep disappointed.</p>";
+		myMessage += "<p class='modVoice'>마을주민들은 실망스러워 하며 잠에 듭니다. 눈을 감아주세요.</p>";
 		myMessage += onSurvival(target);
 	} else {
 		g.log += "W";
@@ -897,20 +897,20 @@ function STEP_lynchVolunteer(target) {
 		myMessage += "<p class='modVoice'>Town, stay asleep, and we'll move on night.</p>";
 	} else if (g.playerList[target].role == 15 && g.cycleNum <= 3) { //emissary
 		myMessage += "<p class='modVoice'>" + pn(target);
-		myMessage += "volunteered to be hung, but mysteriously survived!</p>";
+		myMessage += "volunteered to be hung, but(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
 		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Emissary.)</p>";
 		myMessage += "<p class='modVoice'>Well, that was weird.  Anyway, the town stayed asleep as night fell.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].extraLives > 0) {
 		g.playerList[target].extraLives -= 1;
 		myMessage += "<p class='modVoice'>" + pn(target);
-		myMessage += "volunteered to be hung, but mysteriously survived!</p>";
+		myMessage += "volunteered to be hung, but(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
 		myMessage += "<p class='modSecret'>(" + pn(target) + " had an extra life.)</p>";
 		myMessage += "<p class='modVoice'>Well, that was weird.  Anyway, the town stayed asleep as night fell.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest
 		myMessage += "<p class='modVoice'>" + pn(target);
-		myMessage += "volunteered to be hung, but mysteriously survived!</p>";
+		myMessage += "volunteered to be hung, but(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
 		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
 		myMessage += "<p class='modVoice'>Well, that was weird.  Anyway, the town stayed asleep as night fell.</p>";
 		myMessage += onSurvival(target);

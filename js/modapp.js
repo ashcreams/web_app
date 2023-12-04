@@ -104,18 +104,18 @@ var categoryRoleDict={ 0: "Holy",
 					  21: "Informative",
 					  }
 
-var deathLocationStringDict = { 0: " Across from the Alehouse",
-							    1: " Beneath a Bridge",
-								2: " Close to the Church",
+var deathLocationStringDict = { 0: " 맥주집 건너편에서",
+							    1: " 다리 밑에서",
+								2: " 교회 근처에서",
 								3: " Down by the Docks",
 								4: " Round the Riverbend",
 								5: " in Front of the Fields",
 								6: " Towards the Turnpike",
-								7: " Halfway down a Hill",
-								8: " Inside the Inn",
+								7: " 언덕 아래에서",
+								8: " 여관안에서",
 								9: " Stuffed inside a Scarecrow",
-							   10: " Within a Well",
-							   11: " Left in a Lake",
+							   10: " 우물안에서",
+							   11: " 호수 깊은 곳에서",
 							   12: " in the Middle of Nowhere",
 							   13: " Vanquished in the Valley",
 							   14: " Perched on a Pig Pen",
@@ -964,7 +964,6 @@ function checkDuplicateRoles(arr) {
   
 	  // 이미 Set에 존재하는 역할이라면 중복이므로 에러 출력
 	  if (roleSet.has(currentRole)) {
-		console.error('에러: 중복된 role 값이 발견되었습니다 -', currentRole);
 		alert('이미 선택된 캐릭터가 있습니다.', currentRole);
 		return false;
 	  }
@@ -1123,6 +1122,22 @@ function modkill(playerNum, isBanned) {
 		g.playerList[playerNum].isBanned = true;
 	}
 	onDeath(playerNum);
+}
+
+function checkMinPlayers() {
+	var checkCntWitch = g.playerList.some(function(player) {
+		return player.team === -1;
+	});
+
+	debugger
+	console.log(g);
+	if(g.playerList.length < 5){
+		alert("최소 5명의 플레이어가 필요합니다.");
+	}else if(!checkCntWitch){
+		alert("선택된 마녀가 0명입니다.");
+	}else{
+		step();
+	}
 }
 
 function step() {
