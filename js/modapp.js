@@ -56,6 +56,30 @@ var masterRoleDict = { 0: "Priest",
 					  21: "Fortune Teller",
 					  }
 
+var initialRoleDict = {0: "Priest",
+					   1: "Judge",
+					   2: "Digger",
+					   3: "Appren",
+					   4: "Survival",
+					   5: "D.O.B.",
+					   6: "Gambler",
+					   7: "Fanatic",
+					   8: "Oracle",
+					   9: "Watch",
+					  10: "Hunter",
+					  11: "Tom",
+					  12: "Cannon",
+					  13: "Nurse",
+					  14: "Inquis",
+					  15: "Emisry",
+					  16: "Acolyte",
+					  17: "B.O.D.",
+					  18: "Bomber",
+					  19: "Assassin",
+					  20: "Spirit",
+					  21: "Fortune",
+					  }
+
 var abbrevRoleDict = { 0: "<div class='roleicon'><img src='img/roleicons/roleicon_priest.jpg'><span class='vertical'>Priest</span></div>",
 					   1: "<div class='roleicon'><img src='img/roleicons/roleicon_judge.jpg'><span class='vertical'>Judge</span></div>",
 					   2: "<div class='roleicon'><img src='img/roleicons/roleicon_gravedigger.jpg'><span class='vertical'>Digger</span></div>",
@@ -466,7 +490,7 @@ function deal(playerCount) {
 	console.log(g.playerList);
 
 	g.aliveNum = playerCount;
-	$('#playerListPrompt').html("<p class='modSecret instructions'>Your Village</p>");
+	$('#playerListPrompt').html("<p class='modSecret instructions'>마을 구성</p>");
 	buildPlayerTable('#playerTableBody');
 	nameClean();
 	updateView();
@@ -878,6 +902,9 @@ function buildPlayerTable(target) {
 
 // 팀 변경
 function teamSelect(i) {
+	if(g.playerList[i].team == 1){
+		return alert("Priest는 팀을 변경할 수 없습니다.")
+	}
 	if (g.currentPhase == "Deal") {
 		notUndoflag = true;
 		$('.undo-button').addClass("disabled");
@@ -934,7 +961,7 @@ function roleChange(alt) {
 			$('#playerTableBody').find('tr').eq(playerIndex).find('td').eq(2).find('img').attr('src', clergyImageSource);
 			g.playerList[playerIndex].team = parseInt(1);
 		}
-		
+		$('#playerTableBody').find('tr').eq(playerIndex).find('td').find('span').eq(0).text(masterRoleDict[alt]);
 		$('#roleSelect').hide();
 		$('#roleSelectTb').hide();
 		$('#playerList').show();

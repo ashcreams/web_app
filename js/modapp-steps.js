@@ -130,7 +130,7 @@ function STEP_acolyte() {
 	var myMessage = "";
 	myMessage += "<p class='modVoice'>Priest, 손을 들어주세요.</p>";
 	myMessage += "<p class='modVoice'>지금부터 Acolyte는 당신이 누군지 알겁니다.</p>";
-	myMessage += "<br><p class='modShow'>가르키며 " + pn(i) + ", the Priest.</p>";
+	myMessage += "<br><p class='modShow'>Priest " + pn(i) + "(을/를) 가르키세요.</p>";
 	myMessage += "<br><p class='modVoice'>Acolyte, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -704,7 +704,7 @@ function STEP_assassin2(target) {
 	var myMessage = "";
 	if (g.tempTarget == myID) {
 		if (g.playerList[g.tempTarget].role == target) {
-			myMessage += "<p class='modVoice'>" + pn(myID) + " the Assassin successfully guessed their own role and killed themselves.</p>";
+			myMessage += "<p class='modVoice'>Assassin " + pn(myID) +"(은/는)  the Assassin successfully guessed their own role and killed themselves.</p>";
 		} else {
 			myMessage += "<p class='modVoice'>" + pn(myID) + " the Assassin failed to guess <i>their own role</i> and killed themselves.  Not that it mattered.</p>";
 		}
@@ -1901,9 +1901,9 @@ function STEP_priest(target) {
 	}
 	if (target == 77) {
 		if (g.deadRole) {
-			myMessage += "<p class='modSecret'>(The Priest is dead.)</p>";
+			myMessage += "<p class='modSecret'>(Priest는 사망했습니다.)</p>";
 		} else {
-			myMessage += "<p class='modSecret'>(The Priest checked no one.)</p>";
+			myMessage += "<p class='modSecret'>(Priest는 아무도 확인하지 않았습니다.)</p>";
 		}
 	} else {
 		var result;
@@ -1920,7 +1920,7 @@ function STEP_priest(target) {
 				myMessage += "<p class='modSecret'>You are apparently a Witch.</p>";
 				myMessage += "<p class='modSecret'>Shenanigans?  Shenanigans.</p>";
 			} else {
-				myMessage += "<p class='modSecret'>" + pn(target) + " <b>IS</b> in the Witch Coven!</p>";
+				myMessage += "<p class='modSecret'>" + pn(target) + "(은/는) 마녀가 <b>맞습니다!</b></p>";
 			}
 		} else {
 			myMessage += "<p class='modThumbs'><span class='glyphicon glyphicon-thumbs-down'></span></p>";
@@ -1928,7 +1928,7 @@ function STEP_priest(target) {
 				myMessage += "<p class='modSecret'>You are not a Witch.</p>";
 				myMessage += "<p class='modSecret'>But you are... several other things.</p>";
 			} else {
-				myMessage += "<p class='modSecret'>" + pn(target) + " is <b>NOT</b> in the Witch Coven!</p>";
+				myMessage += "<p class='modSecret'>" + pn(target) + "(은/는) 마녀가 <b>아닙니다.</b></p>";
 			}
 		}
 		if (g.playerList[target].role == 7) {
@@ -1938,10 +1938,10 @@ function STEP_priest(target) {
 	}
 	if (g.cycleNum == 1) {
 		//first time reminders
-		myMessage += "<p class='modVoice'>I am giving you a <b>thumbs up</b> if they <b><i>are</i></b> in the Witch Coven, and a <b>thumbs down<b> if <b><i>not</i></b>.</p>";
-		myMessage += "<p class='modVoice'>As a reminder, if there there are any Demons, they may be able to flip your checks with Shenanigans.</p>";
+		myMessage += "<p class='modVoice'>지목한 사람이 마녀가 <b><i>맞다면</b></i> <b>엄지를 위로</b>, 마녀가 <b><i>아니라면</b></i> <b>엄지를 아래로<b> 표시해드리겠습니다.</p>";
+		myMessage += "<p class='modVoice'>다시 한번 상기하자면, 만약 악마가 있을 경우, 당신이 확인한 사람은 저주가 걸려있을 수도 있습니다.</p>";
 	} else {
-		myMessage += "<p class='modVoice'>Thumbs up if they are in the Witch Coven, thumbs down if not.</p>";
+		myMessage += "<p class='modVoice'>마녀가 맞다면 엄지를 위로, 아니면 엄지를 아래로 표시합니다.</p>";
 	}
 	myMessage += "<p class='modVoice'>Priest, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
@@ -1951,7 +1951,7 @@ STEP_priest.role_requirement = 0;
 STEP_priest.role_link = 0;
 STEP_priest.prompt_type = "target";
 STEP_priest.prompt_subject = null;
-STEP_priest.prompt_string = "<p class='modVoice'>Priest, who would you like to check to see if they are a Witch?</p>";
+STEP_priest.prompt_string = "<p class='modVoice'>Priest, 누가 마녀인지 확인하시겠습니까?</p>";
 STEP_priest.timer = TIMER_SHORT;
 
 function STEP_fanatic() {
@@ -1985,9 +1985,9 @@ function STEP_inquisitor(target) {
 	}
 	if (target == 77) {
 		if (g.deadRole && g.peepingTomActive == null) {
-			myMessage += "<p class='modSecret'>(The Inquisitor is dead.)</p>";
+			myMessage += "<p class='modSecret'>(Inquisitor는 사망했습니다.)</p>";
 		} else {
-			myMessage += "<p class='modSecret'>(The Inquisitor checked no one.)</p>";
+			myMessage += "<p class='modSecret'>(Inquisitor는 아무도 확인하지 않았습니다.)</p>";
 		}
 	} else {
 		var p = g.playerList[target];
@@ -2000,7 +2000,7 @@ function STEP_inquisitor(target) {
 	}
 	if (g.cycleNum == 1) {
 		//first time reminders
-		myMessage += "<p class='modVoice'>Inquisitor, I'm going to show you what kind of character your target has.</p>";
+		myMessage += "<p class='modVoice'>Inquisitor, 당신이 지목한 사람의 캐릭터 카테고리를 보여드리겠습니다.</p>";
 	}
 	myMessage += "<p class='modVoice'>Inquisitor, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
@@ -2010,7 +2010,7 @@ STEP_inquisitor.role_requirement = 14;
 STEP_inquisitor.role_link = 14;
 STEP_inquisitor.prompt_type = "target";
 STEP_inquisitor.prompt_subject = null;
-STEP_inquisitor.prompt_string = "<p class='modVoice'>Inquisitor, who would you like to check to see what category of character they have?</p>";
+STEP_inquisitor.prompt_string = "<p class='modVoice'>Inquisitor, 누구의 캐릭터 카테고리를 확인하시겠습니까?</p>";
 STEP_inquisitor.timer = TIMER_SHORT;
 STEP_inquisitor.allow_PT = true;
 
@@ -2038,9 +2038,9 @@ function STEP_hunter(target) {
 	}
 	if (target == 77) {
 		if (g.deadRole && g.peepingTomActive == null) {
-			myMessage += "<p class='modSecret'>(The Hunter is dead.)</p>";
+			myMessage += "<p class='modSecret'>(Hunter는 사망했습니다.)</p>";
 		} else {
-			myMessage += "<p class='modSecret'>(The Hunter decided to kill no one.)</p>";
+			myMessage += "<p class='modSecret'>(Hunter는 아무도 죽이지 않기로 했습니다.)</p>";
 		}
 	} else {
 		g.playerList[hunterID].used = true;
@@ -2049,7 +2049,7 @@ function STEP_hunter(target) {
 		if (p.role == 10) {
 			myMessage += "<p class='modSecret'>The Hunter shot themselves.  Really?</p>";
 		} else {
-			myMessage += "<p class='modSecret'>The Hunter shot " + pn(target) + ".</p>";
+			myMessage += "<p class='modSecret'>Hunter는 " + pn(target) + "(을/를) 쐈습니다.</p>";
 		}
 	}
 	myMessage += "<p class='modVoice'>Hunter, 눈을 감아주세요.</p>";
@@ -2059,7 +2059,7 @@ function STEP_hunter(target) {
 STEP_hunter.role_link = 10;
 STEP_hunter.prompt_type = "target";
 STEP_hunter.prompt_subject = null;
-STEP_hunter.prompt_string = "<p class='modVoice'>Hunter, who would you like to kill?</p>";
+STEP_hunter.prompt_string = "<p class='modVoice'>Hunter, 누구를 암살하시겠습니까?</p>";
 STEP_hunter.timer = TIMER_SHORT;
 STEP_hunter.allow_PT = true;
 
@@ -2086,9 +2086,9 @@ function STEP_bomber(target) {
 	}
 	if (target == 77) {
 		if (g.deadRole && g.peepingTomActive == null) {
-			myMessage += "<p class='modSecret'>(The Bomber is dead.)</p>";
+			myMessage += "<p class='modSecret'>(Bomber는 사망했습니다.)</p>";
 		} else {
-			myMessage += "<p class='modSecret'>(The Bomber did not detonate the Bomb tonight.)</p>";
+			myMessage += "<p class='modSecret'>(Bomber는 오늘 밤 폭탄을 터트리지 않았습니다.)</p>";
 		}
 	} else {
 		g.playerList[bomberID].used = true;
@@ -2098,7 +2098,7 @@ function STEP_bomber(target) {
 		if (p.role == 18) {
 			myMessage += "<p class='modSecret'>(The Bomber blew themselves up. Really?)</p>";
 		} else {
-			myMessage += "<p class='modVoice'>(The Bomber detonated the Bomb on " + pn(g.bombHolder) + ".)</p>";
+			myMessage += "<p class='modVoice'>(Bomber는 " + pn(g.bombHolder) + " 앞에 있는 폭탄을 터트렸습니다.)</p>";
 			g.wakeupList.push(g.bombHolder);
 		}
 	}
@@ -2109,7 +2109,7 @@ function STEP_bomber(target) {
 STEP_bomber.role_link = 18;
 STEP_bomber.prompt_type = "choice";
 STEP_bomber.prompt_subject = null;
-STEP_bomber.prompt_string = "<p class='modVoice'>Bomber, would you like to detonate the Bomb?</p>";
+STEP_bomber.prompt_string = "<p class='modVoice'>Bomber, 폭탄을 터트리겠습니까?</p>";
 STEP_bomber.prompt_choices = ["Yes"];
 STEP_bomber.no_target_string_override = "No";
 STEP_bomber.timer = TIMER_SHORT;
