@@ -992,7 +992,16 @@ function checkDuplicateRoles(arr) {
 	}
 	return true;
 }  
-  
+
+function meetWitchShow() {
+	if($('#witchMeet').css('display') == 'none'){
+		$('#witchMeet').show();
+	}else{
+		$('#witchMeet').hide();
+	}
+	
+}
+
 function timerReset() {
 	g.pausedTimeLeft = g.currentStepLength;
 	g.targetTime = null;
