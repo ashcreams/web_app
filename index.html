@@ -23,6 +23,9 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
+	<!-- swiper -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- IE8 support for HTML5 elements and media queries -->
     <!-- [if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -407,6 +410,23 @@
 			</tr>
 		</table>
 		<br>
+		<!-- Slider main container -->
+		<div id="witchMeet" class="main-section swiper">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+			<!-- Slides -->
+			<!-- <div class="swiper-slide"><img src="img/roleicons/roleicon_priest.jpg"></div> -->
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+		
+			<!-- If we need navigation buttons -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		
+			<!-- If we need scrollbar -->
+			<div class="swiper-scrollbar"></div>
+		</div>
 		<div class="advance-button-group bottom bottom-floor">
 			<div class="block">
 				<button id="infoButton" class="btn" onClick="step()">다음</button>
@@ -484,6 +504,32 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		const swiper = new Swiper('.swiper', {
+		  // Optional parameters
+		  slidesPerView : 1,
+		  direction: 'horizontal',
+		  loop: true,
+	
+		  // If we need pagination
+		  pagination: {
+			el: '.swiper-pagination',
+		  },
+	
+		  // Navigation arrows
+		  navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		  },
+	
+		  // And if we need scrollbar
+		  scrollbar: {
+			el: '.swiper-scrollbar',
+		  },
+		});
+	
+	</script>
 
     <script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>

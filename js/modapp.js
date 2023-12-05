@@ -1,4 +1,4 @@
-var CURRENT_VERSION = 2017042800
+var CURRENT_VERSION = 2023120500
 
 var PLAYER_NAME_MAX_LENGTH = 20;
 var RESET_NAMES_DEFAULT = false;
@@ -193,7 +193,6 @@ var imgTeamDict = {	0: "village",
 				 }						
 
 var computeWitchCount = function(myRoleList) {
-	debugger
 	var rawWitchCount = Math.pow(myRoleList.length - 5, 0.5) + 1;
 	if (myRoleList.length > 5) {
 		var myBonus = 0;
@@ -218,7 +217,7 @@ var computeWitchCount = function(myRoleList) {
 
 var masterHolyRoleList = [0,16];
 // var masterMandatoryRoleList = [0,1,2,3,4];
-var masterMandatoryRoleList = [];
+var masterMandatoryRoleList = [0];
 var masterDisabledRoleList = [];
 var masterElectiveRoleList = [0,1,2,3,4,5,6,7,8,9,10,15,12,19,13,20,17,16,18,11,21,14];
 var myPriorityRoleList = [/*5,6,7,8,9,10,11*/];
@@ -487,8 +486,6 @@ function deal(playerCount) {
 		}
 	}
 
-	console.log(g.playerList);
-
 	g.aliveNum = playerCount;
 	$('#playerListPrompt').html("<p class='modSecret instructions'>마을 구성</p>");
 	buildPlayerTable('#playerTableBody');
@@ -520,6 +517,7 @@ function shuffle(array) {
 
 // 플레이어 추가
 function addPlayer() {
+	debugger
 	if (g.playerList.length >= masterElectiveRoleList.length - masterDisabledRoleList.length) {
 		return 1;
 	}
@@ -915,8 +913,6 @@ function teamSelect(i) {
 	}else{
 		return
 	}
-	
-
 }
 
 // 캐릭터 변경
@@ -944,8 +940,6 @@ function teamChange(alt) {
 	$('#teamSelect').hide();
 	$('#teamSelectTb').hide();
 	$('#playerList').show();
-	console.log(g.playerList);
-
 }
 
 // 캐릭터 변경 클릭
@@ -961,12 +955,10 @@ function roleChange(alt) {
 			$('#playerTableBody').find('tr').eq(playerIndex).find('td').eq(2).find('img').attr('src', clergyImageSource);
 			g.playerList[playerIndex].team = parseInt(1);
 		}
-		$('#playerTableBody').find('tr').eq(playerIndex).find('td').find('span').eq(0).text(masterRoleDict[alt]);
+		$('#playerTableBody').find('tr').eq(playerIndex).find('td').find('span').eq(0).text(initialRoleDict[alt]);
 		$('#roleSelect').hide();
 		$('#roleSelectTb').hide();
 		$('#playerList').show();
-
-		console.log(g.playerList);
 	}	
 }
 
@@ -998,8 +990,6 @@ function checkDuplicateRoles(arr) {
 	  // Set에 현재 역할 추가
 	  roleSet.add(currentRole);
 	}
-  
-	console.log('모든 role 값이 유일합니다.')
 	return true;
 }  
   
@@ -1155,9 +1145,6 @@ function checkMinPlayers() {
 	var checkCntWitch = g.playerList.some(function(player) {
 		return player.team === -1;
 	});
-
-	debugger
-	console.log(g);
 	if(g.playerList.length < 5){
 		alert("최소 5명의 플레이어가 필요합니다.");
 	}else if(!checkCntWitch){
@@ -1840,8 +1827,8 @@ function updateView() {
 	} else {
 		$('.pt-section').hide();
 	}
-	console.log("---------game data---------");
-	console.log(g);
+	// console.log("---------game data---------");
+	// console.log(g);
 }
 
 function ptClick() {

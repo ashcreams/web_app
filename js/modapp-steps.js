@@ -9,8 +9,31 @@ var STEP_dict = {"Deal":		["deal"],
 				 "Night":		["nightStart", "angelTutorial", "gravediggerMultiplex", "demons1", "demons2", "angels", "angelConclusion", "witchMultiplex", "priest", "inquisitor", "hunterCheck", "bomberCheck", "watchmanCheck", "witchHandicapCheck", "resolveNightKills"],
 				 "Village Win":	["villageWin"],
 				 "Witch Win":	["witchWin"],
-				 }
+				}
 
+var imgRoleDict = { 0: "priest",
+				1: "judge",
+				2: "gravedigger",
+				3: "apprentice",
+				4: "survivalist",
+				5: "dob",
+				6: "gambler",
+				7: "fanatic",
+				8: "oracle",
+				9: "watchman",
+				10: "hunter",
+				11: "peepingtom",
+				12: "loosecannon",
+				13: "nurse",
+				14: "inquisitor",
+				15: "emissary",
+				16: "acolyte",
+				17: "bod",
+				18: "bomber",
+				19: "assassin",
+				20: "spiritualist",
+				21: "fortuneteller",
+				}	
 // helpers
 
 function pn(playerID) {
@@ -160,10 +183,14 @@ function STEP_witchMeet() {
 	myMessage += "<p class='modVoice'>마녀, 일어나서 서로 확인해주세요.</p>";
 	myMessage += "<p class='modVoice'>여러분 중에 마녀는 총 " + witchRolePairs.length + "명 입니다.</p>";
 	myMessage += "<p class='modVoice'>제가 돌아다니면서 마녀들의 캐릭터를 보여드리겠습니다.</p></br>";
+	
 	for (var i = 0; i < witchRolePairs.length; i++) {
 		myMessage += "<p class='modShow'><b>" + pn(witchRolePairs[i][0]);
-		myMessage += " is the <span class='rolename'> " + masterRoleDict[witchRolePairs[i][1]] + "</span></p>";
+		myMessage += " : <span class='rolename'>" + masterRoleDict[witchRolePairs[i][1]] + "</span></p>";
 	}
+	introWitch(witchRolePairs);
+	$('#witchMeet').show();
+
 	myMessage += "<br><p class='modVoice'>마녀, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -172,6 +199,14 @@ STEP_witchMeet.team_link = -1;
 STEP_witchMeet.prompt_type = "info";
 STEP_witchMeet.prompt_subject = "Witches";
 STEP_witchMeet.timer = TIMER_MEDIUM;
+
+function introWitch(arr) {
+	var jumboImg = "";
+	for (var i = 0; i < witchRolePairs.length; i++) {
+		jumboImg += `'<div class="swiper-slide introWitch"><img src="img/jumboCards/${imgRoleDict[arr[i][1]]}.jpg" width="200px" ></div>'`
+	}
+	$('.swiper-wrapper').html(jumboImg);
+}
 
 function STEP_apprentice(choice) {
 	var gravediggerID;
@@ -1464,12 +1499,12 @@ function STEP_angelTutorial() {
 				myMessage += "<p class='modVoice'>Maybe we will have some dead players tomorrow night?</p>";
 				break;
 			case 2:
-				myMessage += "<p class='modVoice'>Wow, we still have no Angels or Demons?!?</p>";
+				myMessage += "<p class='modVoice'>와우, 아직도 천사과 악마가 없다고요?!?</p>";
 				myMessage += "<br>";
-				myMessage += "<p class='modVoice'>Maybe tomorrow night...</p>";
+				myMessage += "<p class='modVoice'>내일 밤에는 있겠죠...</p>";
 				break;
 			case 3:
-				myMessage += "<p class='modVoice'>Wait, no dead players?  STILL?  This is stupid.</p>";
+				myMessage += "<p class='modVoice'>잠깐만요, 아직도 죽은 플레이어가 없어요?  아직도?  뭐하는 겁니까.</p>";
 				break;
 			default:
 				myMessage += "<p class='modVoice'>CAN YOU PEOPLE DIE ALREADY?!?</p>";
@@ -1587,7 +1622,7 @@ function STEP_demons2(target) {
 		myMessage += "<p class='modSecret'>(악마가 아직 없습니다.)</p>";
 		g.hauntingTargetList = [];
 	} else if (target == 77 || g.hauntingTargetList[0] == 77 || g.hauntingTargetList[0] == target) {
-		myMessage += "<p class='modSecret'>(The Demons could not decide who to Meddle with.)</p>";
+		myMessage += "<p class='modSecret'>(악마들이 저주를 걸지 않았습니다.)</p>";
 		g.hauntingTargetList = [];
 	} else if ((g.playerList[g.hauntingTargetList[0]].covenJoinCycleNum === null) &&
 				(g.playerList[target].covenJoinCycleNum === null)) {
@@ -1659,7 +1694,7 @@ function STEP_angelProtectionDoublePrompt(choice) {
 }
 STEP_angelProtectionDoublePrompt.prompt_type = "choice-auto";
 STEP_angelProtectionDoublePrompt.prompt_subject = "Double Protection";
-STEP_angelProtectionDoublePrompt.prompt_choices = ["Use it!", "Save it!"];
+STEP_angelProtectionDoublePrompt.prompt_choices = ["사용", "미사용"];
 STEP_angelProtectionDoublePrompt.prompt_string = "<p class='modSecret'>(Are the Angels requesting to <span class='keyword-highlight-angel'>Protect</span> a second target? They can only do this once!)</p>";
 STEP_angelProtectionDoublePrompt.no_target_invalid = true;
 STEP_angelProtectionDoublePrompt.timer = TIMER_VERY_SHORT;
@@ -1687,10 +1722,10 @@ function STEP_angelConclusion() {
 
 	switch (g.angelProtectList.length) {
 		case 0:
-			myMessage += "<p class='modSecret'>(The Angels did not protect a target.)</p>";
+			myMessage += "<p class='modSecret'>(천사들이 아무도 보호하지 않았습니다.)</p>";
 			break;
 		case 1:
-			myMessage += "<p class='modSecret'>(The Angels protected " + pn(g.angelProtectList[0]) + ".)</p>";
+			myMessage += "<p class='modSecret'>(천사들이 " + pn(g.angelProtectList[0]) + "(을/를) 보호했습니다.)</p>";
 			if (g.hauntingTargetList.indexOf(g.angelProtectList[0]) != -1) {
 				myMessage += "<p class='modSecret'>(Because " + pn(g.angelProtectList[0]);
 				myMessage += " was meddled with, the Angels may never protect ";
@@ -1698,7 +1733,7 @@ function STEP_angelConclusion() {
 			}
 			break;
 		default: //case 2
-			myMessage += "<p class='modSecret'>(The Angels protected " + pn(g.angelProtectList[0]);
+			myMessage += "<p class='modSecret'>(천사들이 " + pn(g.angelProtectList[0]) + "(을/를) 보호했습니다.)</p>";
 			myMessage += " and " + pn(g.angelProtectList[1]) + ").</p>";
 			if (g.hauntingTargetList.indexOf(g.angelProtectList[0]) != -1) {
 				myMessage += "<p class='modSecret'>(Because " + pn(g.angelProtectList[0]);
@@ -1748,14 +1783,14 @@ function STEP_witchIntro() {
 	myMessage = "";
 	switch (g.cycleNum) {
 		case 1:
-			myMessage += "<p class='modVoice'>Wake up Witches, and be careful not to make any detectable noise or motion.</p>";
-			myMessage += "<p class='modVoice'>Each night the Witch Coven may agree to kill a target by silently pointing and nodding.</p>";
-			myMessage += "<p class='modVoice'>If there is any disagreement, I will go with the plurality consensus; if you can't break a tie, you'll kill no one.</p>";
-			myMessage += "<p class='modVoice'>With all that said, who would you like to kill?</p>";
+			myMessage += "<p class='modVoice'>마녀, 일어나세요. <br>다른 사람들에게 들키지 않게 소리와 움직임에 조심하세요.</p>";
+			myMessage += "<p class='modVoice'>매일 밤 마녀들은 죽이고 싶은 사람을 조용히 가르키세요.</p>";
+			myMessage += "<p class='modVoice'>의견 충돌이 없다면, 다수결 선택으로 결정 됩니다.; 동률이 생기면, 아무도 죽이지 못합니다.</p>";
+			myMessage += "<p class='modVoice'>설명을 들으셨다면, 죽이고 싶은 플레이어를 선택해주세요.</p>";
 			break;
 		case 2:
-			myMessage += "<p class='modVoice'>And now it is once again time for the Witches to do their dastardly deed.</p>";
-			myMessage += "<p class='modVoice'>As a reminder, when there is one Witch left, they <b><i>MAY<i></b> kill two targets each night.</p>"
+			myMessage += "<p class='modVoice'>자, 이제 다시 한번 마녀들이 끔찍한 행동을 할 시간입니다.</p>";
+			myMessage += "<p class='modVoice'>다시 한 번 상기하자면, 마녀가 한 명이 남을 경우, 매일 밤 <b><i>두 명씩<i></b> 죽일 수 있습니다.</p>"
 			myMessage += "<p class='modVoice'>They don't have to--they may prefer to not reveal the fact that there is only one Witch left.  However, the two kills cannot be stacked on the same target.</p>";
 			break;
 		case 3:
@@ -1791,7 +1826,7 @@ function STEP_witchKill(target) {
 		if (g.nightKillList.length) {
 			myMessage += "<p class='modSecret'>(" + pn(soloName) + " did not use their second kill.)</p>";
 		} else {
-			myMessage += "<p class='modSecret'>(The Witches killed no one tonight.)</p>";
+			myMessage += "<p class='modSecret'>(마녀들은 오늘 밤 아무도 죽이지 않았습니다.)</p>";
 		}
 	} else if (g.nightKillList.length && g.nightKillList.indexOf(target) != -1) {
 		//last stand second kill cannot be on the same target
