@@ -1536,7 +1536,7 @@ function stepSubmit(data, confirmed) {
 function interruptStep(interruptStepIndex) {
 	g.stepList.shift();
 	g.stepList.unshift("dummy", g.interruptStepList[interruptStepIndex]);
-	timerPause();
+	timerPause();update
 	g.interruptPausedTimeLeft = g.pausedTimeLeft;
 	return step();
 }
@@ -1775,7 +1775,7 @@ function updateView() {
 			if (nextStep.hasOwnProperty("no_target_string_override")) {
 				$('#choice77').html(nextStep.no_target_string_override);
 			} else {
-				$('#choice77').html("None");
+				$('#choice77').html("선택하지 않음");
 			}
 			$('#choice').show();
 			break;

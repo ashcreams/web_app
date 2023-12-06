@@ -471,7 +471,7 @@ function STEP_dayStart() {
 			for (var i = 0; i < g.playerList.length; i++) {
 				if (g.playerList[i].role == 18 && g.playerList[i].used == true) {
 					g.bombHolder = null;
-					myMessage += "<br><p class='modVoice'>The Bomb was detonated, and is no more.</p>";
+					myMessage += "<br><p class='modVoice'>폭탄이 터졌으므로 폭탄은 더 이상 존재하지 않습니다.</p>";
 					break;
 				}
 			}
@@ -739,20 +739,20 @@ function STEP_assassin2(target) {
 	var myMessage = "";
 	if (g.tempTarget == myID) {
 		if (g.playerList[g.tempTarget].role == target) {
-			myMessage += "<p class='modVoice'>Assassin " + pn(myID) +"(은/는)  the Assassin successfully guessed their own role and killed themselves.</p>";
+			myMessage += "<p class='modVoice'>Assassin " + pn(myID) +"(은/는) 지목한 상대방의 캐릭터를 정확하게 맞추면 그 사람을 암살할 수 있습니다.</p>";
 		} else {
-			myMessage += "<p class='modVoice'>" + pn(myID) + " the Assassin failed to guess <i>their own role</i> and killed themselves.  Not that it mattered.</p>";
+			myMessage += "<p class='modVoice'>Assassin " + pn(myID) + "(은/는) 지목한 상대방의 캐릭터를 맞추지 못하면 본인이 사망합니다.</p>";
 		}
 	} else {
 		if (g.playerList[g.tempTarget].role == target) {
-			myMessage += "<p class='modVoice'>" + pn(myID) + " the Assassin successfully guessed that ";
-			myMessage += pn(g.tempTarget) + " was the " + masterRoleDict[target] + ", killing them.</p>";
+			myMessage += "<p class='modVoice'>Assassin " + pn(myID) + "(은/는) ";
+			myMessage += pn(g.tempTarget) + " 상대방의 캐릭터인 " + masterRoleDict[target] + "를 정확하게 맞춰서 암살에 성공했습니다.</p>";
 			if (target == 15 && g.cycleNum <= 3) {
 				myMessage += "<p class='modSecret'>(" + pn(g.tempTarget) + " may have been the Emissary, but the Emissary card doesn't say anything about assassins...)</p>";
 			}
 			assassinDie = false;
 		} else {
-			myMessage += "<p class='modVoice'>" + pn(myID) + " the Assassin incorrectly guessed that ";
+			myMessage += "<p class='modVoice'>Assassin" + pn(myID) + "(은/는) 추측에 실패해서 ";
 			myMessage += pn(g.tempTarget) + " was the " + masterRoleDict[target] + ", resulting in " + pn(myID) + " killing themselves in shame.</p>";
 			myMessage += "<p class='modSecret'>(" + pn(g.tempTarget) + " is actually the the " + masterRoleDict[g.playerList[g.tempTarget].role] + ".)</p>";
 		}
@@ -871,19 +871,19 @@ function STEP_judge(target) {
 	var myMessage = "";
 	if (target == 77) {
 		g.log += "w";
-		myMessage += "<p class='modVoice'>The Judge either chose to hang no one, or is dead.</p>";
+		myMessage += "<p class='modVoice'>Judge는 아무도 죽이지 않을 수 있고, 처형을 할 수 있습니다. 둘 중에 선택해주세요.</p>";
 		myMessage += "<p class='modVoice'>If anyone is passionately opposed to no one being hung, here's one last chance to volunteer.</p>";
 		g.stepList.unshift(g.stepList.shift(), "lynchVolunteer");
 	} else if (g.playerList[target].role == 15 && g.cycleNum < 4) { //emissary
 		g.log += "W";
-		myMessage += "<p class='modVoice'>The Judge chose to hang " + pn(target);
-		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Emissary.)</p>";
-		myMessage += ", but " + pn(target) + " survived!</p>";
+		myMessage += "<p class='modVoice'>Judge가 " + pn(target) + "(을/를) 처형시켰습니다.";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) Emissary 입니다.)</p>";
+		myMessage += ", 하지만 " + pn(target) + "(은/는) 살아남았습니다!</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest
-		myMessage += "<p class='modVoice'>The town chose to hang " + pn(target);
-		myMessage += ", but " + pn(target) + "(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
+		myMessage += "<p class='modVoice'>마을주민들은 " + pn(target) + "(을/를) 처형시켰습니다.";
+		myMessage += ", but " + pn(target) + "(은/는) 무슨일인지 모르겠지만 살아남았습니다!</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) Priest입니다. 마을주민에게는 힘든 상황이 되겠네요.)</p>";
 		myMessage += "<p class='modVoice'>마을주민들은 실망스러워 하며 잠에 듭니다. 눈을 감아주세요.</p>";
 		myMessage += onSurvival(target);
 	} else {
@@ -933,21 +933,21 @@ function STEP_lynchVolunteer(target) {
 	} else if (g.playerList[target].role == 15 && g.cycleNum <= 3) { //emissary
 		myMessage += "<p class='modVoice'>" + pn(target);
 		myMessage += "volunteered to be hung, but(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Emissary.)</p>";
-		myMessage += "<p class='modVoice'>Well, that was weird.  Anyway, the town stayed asleep as night fell.</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) Emissary 입니다.)</p>";
+		myMessage += "<p class='modVoice'>음.. 이상하네요. 아무튼, 주민 여러분 모두 잠들어주세요.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].extraLives > 0) {
 		g.playerList[target].extraLives -= 1;
 		myMessage += "<p class='modVoice'>" + pn(target);
 		myMessage += "volunteered to be hung, but(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " had an extra life.)</p>";
-		myMessage += "<p class='modVoice'>Well, that was weird.  Anyway, the town stayed asleep as night fell.</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) 추가 생명이 있습니다.)</p>";
+		myMessage += "<p class='modVoice'>음.. 이상하네요. 아무튼, 주민 여러분 모두 잠들어주세요.</p>";
 		myMessage += onSurvival(target);
 	} else if (g.playerList[target].role == 0 && g.cycleNum == 1 && villageHandicap) { //priest
 		myMessage += "<p class='modVoice'>" + pn(target);
 		myMessage += "volunteered to be hung, but(은/는) 무슨일인지는 모르겠지만 살아남았습니다!</p>";
-		myMessage += "<p class='modSecret'>(" + pn(target) + " is the Priest, and the Village team handicap is in effect.)</p>";
-		myMessage += "<p class='modVoice'>Well, that was weird.  Anyway, the town stayed asleep as night fell.</p>";
+		myMessage += "<p class='modSecret'>(" + pn(target) + "(은/는) Priest입니다. 마을주민에게는 힘든 상황이 되겠네요.)</p>";
+		myMessage += "<p class='modVoice'>음.. 이상하네요. 아무튼, 주민 여러분 모두 잠들어주세요.</p>";
 		myMessage += onSurvival(target);
 	} else {
 		myMessage += "<p class='modVoice'>Suddenly, " + pn(target) + " volunteered to be hung! Before everyone knew what was happening, they were dead.</p>";
@@ -1374,10 +1374,10 @@ STEP_bombPass.timer = TIMER_SHORT;
 function STEP_nightStart() {
 	var myMessage = "";
 	if (g.cycleNum == 1) {
-		myMessage += "<p class='modVoice'>It is now Night 1, so everyone should be asleep.</p>";
-		myMessage += "<p class='modVoice'>You may not open your eyes, speak, make hand signals, or communicate in any way while you are supposed to be asleep.</p>";
+		myMessage += "<p class='modVoice'>첫 번째 밤입니다. 모두 잠들어주세요.</p>";
+		myMessage += "<p class='modVoice'>자는 동안에는 눈을 뜨거나, 말하거나, 손으로 신호를 보내거나, 어떠한 의사소통을 해서는 안됩니다.</p>";
 	} else {
-		myMessage += "<p class='modVoice'>It is now Night " + g.cycleNum + ".</p>";
+		myMessage += "<p class='modVoice'>" + g.cycleNum + " 번째 밤입니다.</p>";
 	}
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -1420,34 +1420,34 @@ function STEP_gravedigger() {
 	var myMessage = "";
 	switch(deadList.length) {
 		case 0:
-			myMessage += "<p class='modVoice'>Unfortunately Gravedigger, nobody died today.</p>";
-			myMessage += "<p class='modVoice'>I've got nothing for you; maybe tomorrow night!</p>";
+			myMessage += "<p class='modVoice'>오늘 아무도 죽지 않았기 때문에 Gravedigger는 일어나지 않습니다.</p>";
+			myMessage += "<p class='modVoice'>아무것도 보여드릴수 없기에; 내일 밤을 기대하세요!</p>";
 			break;
 		case 1:
 			if (g.cycleNum == 1) {
-				myMessage += "<p class='modVoice'>Gravedigger, while " + pn(deadList[0]) + " decides what to do as an Angel or Demon, I'm going to show you " + pn(deadList[0]) + "'s cards.</p>";
+				myMessage += "<p class='modVoice'>Gravedigger, " + pn(deadList[0]) + "(이/가) 천사나 악마로서 결정을 고민하는 동안, 사망한 " + pn(deadList[0]) + "의 카드를 보여드리겠습니다.</p>";
 			} else {
-				myMessage += "<p class='modVoice'>Gravedigger, while the Angels and Demons decide what to do, I'm going to show you " + pn(deadList[0]) + "'s cards.</p>";
+				myMessage += "<p class='modVoice'>Gravedigger, 천사와 악마가 결정을 고민하는 동안, 사망한 " + pn(deadList[0]) + "의 카드를 보여드리겠습니다.</p>";
 			}
 			break;
 		default:
-			myMessage += "<p class='modVoice'>Gravedigger, while the Angels and Demons decide what to do, I'm going to show you the cards of everyone who died today.</p>";
-			myMessage += "<p class='modVoice'>That includes ";
+			myMessage += "<p class='modVoice'>Gravedigger, 천사와 악마가 결정을 고민하는 동안, 오늘 사망한 모든 사람들의 카드를 보여드리겠습니다.</p>";
+			myMessage += "<p class='modVoice'>사망한 사람은 ";
 			for (var i = 0; i < deadList.length - 2; i++) {
 				myMessage += pn(deadList[i]) + ", ";
 			}
-			myMessage += pn(deadList[1]) + " and " + pn(deadList[0]) + ".</p>";
+			myMessage += pn(deadList[1]) + " 와 " + pn(deadList[0]) + "입니다.</p>";
 			break;
 	}
 	if (g.deadRole && g.peepingTomActive == null) {
-		myMessage += "<p class='modSecret'>(There is no Gravedigger.)</p>";
+		myMessage += "<p class='modSecret'>(Gravedigger가 없습니다.)</p>";
 	} else {
 		for (var i = 0; i < deadList.length; i++) {
-			myMessage += "<p class='modShow'><b>" + pn(deadList[i]) + "</b> was the <b>";
-			myMessage += masterRoleDict[g.playerList[deadList[i]].role] + "</b>, a <b>";
-			myMessage += masterTeamDict[g.playerList[deadList[i]].team] + "</b>.</p>";
+			myMessage += "<p class='modShow'><b>" + pn(deadList[i]) + "</b> (은/는) <b>";
+			myMessage += masterRoleDict[g.playerList[deadList[i]].role] + "</b>, <b>";
+			myMessage += masterTeamDict[g.playerList[deadList[i]].team] + "</b>입니다.</p>";
 			if (g.playerList.length - g.aliveNum - deadList.length > 0) {
-				myMessage += "<p class='modSecret'>(Let the other dead players see too.)</p>";
+				myMessage += "<p class='modSecret'>(사망한 플레이어도 같이 볼 수 있습니다.)</p>";
 			}
 		}
 	}
@@ -1495,8 +1495,8 @@ function STEP_angelTutorial() {
 	if (deadCount == 0) {
 		switch (g.cycleNum) {
 			case 1:
-				myMessage += "<p class='modVoice'>This is where we'd have the Demons and Angels make their choices, but there aren't any!</p>";
-				myMessage += "<p class='modVoice'>Maybe we will have some dead players tomorrow night?</p>";
+				myMessage += "<p class='modVoice'>천사와 악마가 저주를 걸 시간이지만, 사후세계에는 아무도 없네요!</p>";
+				myMessage += "<p class='modVoice'>내일 밤에는 누군가 있겠죠?</p>";
 				break;
 			case 2:
 				myMessage += "<p class='modVoice'>와우, 아직도 천사과 악마가 없다고요?!?</p>";
@@ -1504,7 +1504,7 @@ function STEP_angelTutorial() {
 				myMessage += "<p class='modVoice'>내일 밤에는 있겠죠...</p>";
 				break;
 			case 3:
-				myMessage += "<p class='modVoice'>잠깐만요, 아직도 죽은 플레이어가 없어요?  아직도?  뭐하는 겁니까.</p>";
+				myMessage += "<p class='modVoice'>잠깐만요, 아직도 죽은 플레이어가 없어요?  아직도?  뭐하는 겁니까 여러분!</p>";
 				break;
 			default:
 				myMessage += "<p class='modVoice'>CAN YOU PEOPLE DIE ALREADY?!?</p>";
@@ -1512,15 +1512,15 @@ function STEP_angelTutorial() {
 		}
 	} else if (deadCount == 1) {
 		if (g.angelTutorialStep < 1) { //first night this has happened
-			myMessage += "<p class='modVoice'>It's a shame that " + pn(soloName) + " is dead, but now they get to have fun in the afterlife.</p>";
-			myMessage += "<p class='modVoice'>Not only do they get to see everything now instead of closing their eyes, but they also get to be the first Angel or Demon!</p>";
+			myMessage += "<p class='modVoice'>" + pn(soloName) + "(이/가) 죽어서 안됐네요, 하지만 " + pn(soloName) + "(은/는) 사후세계에서 즐거운 시간을 보낼거에요.</p>";
+			myMessage += "<p class='modVoice'>이제 눈을 감지 않아도 되며 모든 것을 볼 수 있을 뿐만 아니라, 처음으로 천사나 악마가 될 겁니다!</p>";
 			myMessage += "<br>";
-			myMessage += "<p class='modVoice'>If " + pn(soloName) + " was a bad guy they are now a Demon, and can <span class='keyword-highlight-demon'>Meddle</span> with two people tonight! This means you can pick a Villager and a Witch, and if the Priest checks either of them tonight he will get the result for the other one.</p>";
-			myMessage += "<p class='modVoice'>On the other hand, if " + pn(soloName) + " was a Villager, they are now an Angel who can <span class='keyword-highlight-angel'>Protect</span> someone. This only lasts for tonight, but there is no limit to who you can protect or how many times.</p>";
+			myMessage += "<p class='modVoice'>만약 " + pn(soloName) + "(이/가) 마녀였다면 지금 악마가 되었고, 오늘 밤, <span class='keyword-highlight-demon'>저주</span>를 두 명에게 걸 수 있습니다! 당신이 선택한 두 사람이 마을주민과 마녀로 팀이 서로 다르다면, Priest가 오늘 밤 둘 중 한명을 확인할 때 확인 결과가 서로 바뀌어 나옵니다.</p>";
+			myMessage += "<p class='modVoice'>반면에, " + pn(soloName) + "(이/가) 마을주민이었다면, 지금은 천사가 되었을겁니다. 천사는 한 명을 선택해서 <span class='keyword-highlight-angel'>보호막</span>을 씌워줄 수 있습니다. 보호막은 오늘 밤까지만 지속되지만 누구를 보호할 수 있는지, 몇 번을 보호할 수 있는지에 대한 제한은 없습니다.</p>";
 			myMessage += "<br>";
 			myMessage += "<p class='modVoice'>Either way, whether you are a Demon Meddling with two people or an Angel Protecting one, who will you do it to?</p>";
 			if (g.gravediggerTrigger) {
-				myMessage += "<p class='modVoice'>You can decide while I show the Gravedigger their information.</p>";
+				myMessage += "<p class='modVoice'>사회자가 Gravedigger에게 정보를 보여주고 있을 때 결정하고 있으면 됩니다.</p>";
 			}
 			g.angelTutorialStep = 1;
 		} else {
@@ -1824,7 +1824,7 @@ function STEP_witchKill(target) {
 	myMessage = "";
 	if (target == 77) {
 		if (g.nightKillList.length) {
-			myMessage += "<p class='modSecret'>(" + pn(soloName) + " did not use their second kill.)</p>";
+			myMessage += "<p class='modSecret'>(" + pn(soloName) + "(은/는) 두 번째 처형을 사용하지 않았습니다.)</p>";
 		} else {
 			myMessage += "<p class='modSecret'>(마녀들은 오늘 밤 아무도 죽이지 않았습니다.)</p>";
 		}
@@ -1855,7 +1855,7 @@ function STEP_witchKill(target) {
 }
 STEP_witchKill.prompt_type = "target";
 STEP_witchKill.prompt_subject = "Coven Kill";
-STEP_witchKill.prompt_string = "<p class='modVoice'>Witches, who would you like to kill?</p>";
+STEP_witchKill.prompt_string = "<p class='modVoice'>마녀, 누구를 죽이겠습니까?</p>";
 STEP_witchKill.timer = TIMER_MEDIUM;
 
 function STEP_witchKill2(target) {
@@ -1863,7 +1863,7 @@ function STEP_witchKill2(target) {
 }
 STEP_witchKill2.prompt_type = "target";
 STEP_witchKill2.prompt_subject = "Last Stand 2";
-STEP_witchKill2.prompt_string = "<p class='modSecret'>(Will the last Witch kill a second target?)</p>";
+STEP_witchKill2.prompt_string = "<p class='modSecret'>(두 번째 대상을 죽이겠습니까?)</p>";
 STEP_witchKill2.target_restrictions = "last stand";
 STEP_witchKill2.timer = TIMER_SHORT;
 
@@ -1878,7 +1878,7 @@ function STEP_witchKillIllusionPrompt(choice) {
 }
 STEP_witchKillIllusionPrompt.prompt_type = "choice-auto";
 STEP_witchKillIllusionPrompt.prompt_subject = "Illusion Kill";
-STEP_witchKillIllusionPrompt.prompt_choices = ["Use it!", "Save it!"];
+STEP_witchKillIllusionPrompt.prompt_choices = ["사용", "미사용"];
 STEP_witchKillIllusionPrompt.prompt_string = "<p class='modSecret'>(In addition to that, are the Witches requesting to use their fake kill? They can only do this once!)</p>";
 STEP_witchKillIllusionPrompt.no_target_invalid = true;
 STEP_witchKillIllusionPrompt.timer = TIMER_VERY_SHORT;
@@ -1986,7 +1986,7 @@ STEP_priest.role_requirement = 0;
 STEP_priest.role_link = 0;
 STEP_priest.prompt_type = "target";
 STEP_priest.prompt_subject = null;
-STEP_priest.prompt_string = "<p class='modVoice'>Priest, 누가 마녀인지 확인하시겠습니까?</p>";
+STEP_priest.prompt_string = "<p class='modVoice'>Priest, 마녀인지 확인할 사람을 선택해주세요.</p>";
 STEP_priest.timer = TIMER_SHORT;
 
 function STEP_fanatic() {
@@ -2082,7 +2082,7 @@ function STEP_hunter(target) {
 		var p = g.playerList[target];
 		g.nightKillList.push(target);
 		if (p.role == 10) {
-			myMessage += "<p class='modSecret'>The Hunter shot themselves.  Really?</p>";
+			myMessage += "<p class='modSecret'>Hunter는 자기 자신을 쐈습니다.  진심인건가..</p>";
 		} else {
 			myMessage += "<p class='modSecret'>Hunter는 " + pn(target) + "(을/를) 쐈습니다.</p>";
 		}
@@ -2131,7 +2131,7 @@ function STEP_bomber(target) {
 		var p = g.playerList[g.bombHolder];
 		g.nightKillList.push(g.bombHolder);
 		if (p.role == 18) {
-			myMessage += "<p class='modSecret'>(The Bomber blew themselves up. Really?)</p>";
+			myMessage += "<p class='modSecret'>(Bomber는 본인 앞에 있는 폭탄을 터트렸습니다. 진심인건가요..?)</p>";
 		} else {
 			myMessage += "<p class='modVoice'>(Bomber는 " + pn(g.bombHolder) + " 앞에 있는 폭탄을 터트렸습니다.)</p>";
 			g.wakeupList.push(g.bombHolder);
@@ -2178,11 +2178,11 @@ function STEP_watchman() {
 		}
 	}
 	var myMessage = "";
-	myMessage += "<p class='modVoice'>Since it is the first night, I am going to show the Watchman a random person who did not wake up tonight.</p>";
-	myMessage += "<p class='modVoice'>This means they can't be a Witch, nor the Priest.</p><br>";
+	myMessage += "<p class='modVoice'>Watchman은 첫째 날에 살아남게 되면, 오늘 밤 일어나지 않은 마을주민을 랜덤으로 알려드립니다.</p>";
+	myMessage += "<p class='modVoice'>그 말은 즉슨, 그 사람은 마녀나 Priest가 아닙니다.</p><br>";
 	if (unwokenList.length) {
 		shuffle(unwokenList);
-		myMessage += "<p class='modShow'>(Point to " + pn(unwokenList[0]) + ".)</p>";
+		myMessage += "<p class='modShow'>(" + pn(unwokenList[0]) + "(을/를) 가르키며.)</p>";
 	} else {
 		myMessage += "<p class='modShow'>(Somehow, everyone woke up.  This should be impossible. *shrug*)</p>";
 	}
@@ -2274,7 +2274,7 @@ STEP_resolveNightKills.prompt_subject = null;
 
 function STEP_villageWin() {
 	var myMessage = "";
-	myMessage += "<p class=modVoice>Villagers Win!</p>";
+	myMessage += "<p class=modVoice>마을주민 승리!</p>";
 	if (DEBUG) {
 		myMessage += "<p class=modCode>Game Code: " + g.log + "</p>";
 		console.log(g.log);
@@ -2283,22 +2283,22 @@ function STEP_villageWin() {
 	buildPlayerTable('#winPlayerTableBody');
 	return 0;
 }
-STEP_villageWin.prompt_type = "win";
-STEP_villageWin.prompt_subject = "Villagers Win";
+STEP_villageWin.prompt_type = "승리";
+STEP_villageWin.prompt_subject = "마을주민 승리";
 
 //witch win phase steps
 
 function STEP_witchWin() {
 	var myMessage = "";
-	myMessage += "<p class=modVoice>Witches Win!</p>";
+	myMessage += "<p class=modVoice>마녀 승리!</p>";
 	//myMessage += "<p class=modCode>Game Code: " + g.log + "</p>";
 	console.log(g.log);
 	$('#winPrompt').html(myMessage);
 	buildPlayerTable('#winPlayerTableBody');
 	return 0;
 }
-STEP_witchWin.prompt_type = "win";
-STEP_witchWin.prompt_subject = "Witches Win";
+STEP_witchWin.prompt_type = "승리";
+STEP_witchWin.prompt_subject = "마녀 승리";
 
 //special modkill step
 
