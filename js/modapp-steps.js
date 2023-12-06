@@ -97,11 +97,11 @@ function STEP_townSleepInstructions() {
 	}
 	var myMessage = "";
 	myMessage += "<br><p class='modVoice'>지금부터 게임을 시작하겠습니다. 모든 플레이어는 각자 자신의 카드를 확인해 주세요.</p>";
-	myMessage += "<br><p class='modVoice'>게임을 처음 시작할 때, 그리고 매일 밤, 사회자는 여러분들에게 밤이 되었으므로 눈을 감아달라고 할 것입니다.</p>";
+	myMessage += "<br><p class='modVoice'><br>게임을 처음 시작할 때, 그리고 매일 밤,<br>사회자는 여러분들에게 밤이 되었으므로 눈을 감아달라고 할 것입니다.</p>";
 	myMessage += "<br><p class='modVoice'>그다음 여러분들은 고개를 숙여 눈을 감아야 합니다. 소리를 내어서도 안되고 어떤 소통도 할 수 없습니다.</p>";
 	myMessage += "<br><p class='modVoice'>사회자가 일어나라고 하는 캐릭터는 진행에 따라 조용하게 액션을 하셔야 합니다.</p>";
 	if (!hasPT) {
-		myMessage += "<br><p class='modVoice'>자, 주민 여러분. 모두 눈을 감아주세요. 게임을 시작하겠습니다.</p>";
+		myMessage += "<br><p class='modVoice'>자, 주민 여러분. 모두 눈을 감아주세요.<br>게임을 시작하겠습니다.</p>";
 	}
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -225,9 +225,9 @@ function STEP_apprentice(choice) {
 	var myMessage = "";
 	myMessage += "<p class='modVoice'>당신이 선택한 플레이어를 알려드리겠습니다.</p><br>";
 	if (choice == 0) {
-		myMessage += "<p class='modShow'>(<span class='rolename'>Gravedigger</span> " + pn(gravediggerID) + "을(를) 가르키세요.)</p>";
+		myMessage += "<p class='modShow'>(" + pn(gravediggerID) + "<span class='rolename'> (Gravedigger)</span> 을(를) 가르키세요.)</p>";
 	} else if (choice == 1) {
-		myMessage += "<p class='modShow'>(<span class='rolename'>Judge</span> " + pn(judgeID) + "을(를) 가르키세요.)</p>";
+		myMessage += "<p class='modShow'>(" + pn(judgeID) + "<span class='rolename'> (Judge)</span> 을(를) 가르키세요.)</p>";
 	} else {
 		myMessage += "<p class='modSecret'>(Apprentice가 선택을 하지 않았습니다...)</p>";
 	}
@@ -364,7 +364,7 @@ function STEP_dayStart() {
 			myMessage += "<p class='modVoice'>(오.. 이것 보세요. " + pn(g.bombHolder) + "가 폭탄을 가지고 있네요!)</p>";
 		}
 		myMessage += "<p class='modVoice'>1번째 날입니다!</p>";
-		myMessage += "<p class='modVoice'>다수결로 지목당한 플레이어는 처형됩니다. 하지만 투표가 부결된다면 Judge에게 결정이 주어집니다.</p>";
+		myMessage += "<p class='modVoice'>다수결로 지목당한 플레이어는 처형됩니다.<br>하지만 투표가 부결된다면 Judge에게 결정이 주어집니다.</p>";
 		myMessage += "<p class='modVoice'>제한시간이 될 때까지 자유롭게 투표는 바꿀 수 있지만, 제한시간이 되면 투표가 동결됩니다.</p>";
 		myMessage += "<p class='modVoice'>가능한 팔이 잘 보이게 뚜렷하게 투표를 해주세요. 원활한 진행에 도움이 됩니다.</p>";
 		myMessage += "<p class='modVoice'><b>이제 준비되셨나요?</b></p>";

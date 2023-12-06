@@ -131,14 +131,14 @@ var categoryRoleDict={ 0: "Holy",
 var deathLocationStringDict = { 0: " 맥주집 건너편에서",
 							    1: " 다리 밑에서",
 								2: " 교회 근처에서",
-								3: " Down by the Docks",
+								3: " 공동묘지 안에서",
 								4: " Round the Riverbend",
 								5: " in Front of the Fields",
 								6: " Towards the Turnpike",
 								7: " 언덕 아래에서",
-								8: " 여관안에서",
+								8: " 여관 안에서",
 								9: " Stuffed inside a Scarecrow",
-							   10: " 우물안에서",
+							   10: " 우물 안에서",
 							   11: " 호수 깊은 곳에서",
 							   12: " in the Middle of Nowhere",
 							   13: " Vanquished in the Valley",
@@ -341,18 +341,18 @@ function clickRoleButton(target) {
 function refreshRolesSelectedCountMessage() {
 	var myRoleList = masterMandatoryRoleList.concat(myPriorityRoleList);
 	var myMessage = "";
-	myMessage += "<p class='modSecret'>You have selected " + myRoleList.length + " characters.<br>";
-	myMessage += "This game will have " + computeWitchCount(myRoleList) + " Witches.</p>";
+	myMessage += "<p class='modSecret'>" + myRoleList.length + "명의 캐릭터가 선택되었습니다.<br>";
+	myMessage += "총 " + computeWitchCount(myRoleList) + "명의 마녀가 있습니다.</p>";
 	$('#rolesSelectedCount').html(myMessage);
 }
 
 function clickAdvancedRulesButton() {
 	if (advancedRules) {
 		advancedRules = false;
-		$('#advancedRulesButtonText').html("Advanced Rules Off");
+		$('#advancedRulesButtonText').html("숙련자 규칙 Off");
 	} else {
 		advancedRules = true;
-		$('#advancedRulesButtonText').html("Advanced Rules On");
+		$('#advancedRulesButtonText').html("숙련자 규칙 On");
 	}
 }
 
@@ -542,7 +542,7 @@ function addPlayer() {
 			}
 		}
 	}
-	var p = new player("Player " + (g.playerList.length + 1));
+	var p = new player("플레이어 " + (g.playerList.length + 1));
 	p.role = myRole;
 	if (masterHolyRoleList.indexOf(myRole) == -1) {
 		p.team = 0;
@@ -599,7 +599,7 @@ function addPlayer() {
 			teamChangeCount += 1;
 		}
 	}
-	myMessage = "<p class='modVoice'>Added character " + masterRoleDict[myRole] + " at slot " + (targetID + 1);
+	myMessage = "<p class='modVoice'>" + masterRoleDict[myRole] + " 캐릭터가 " + (targetID + 1) + "번째 줄에 추가 되었습니다.";
 	if (teamChangeCount == 0) {
 		myMessage += ":</p>";
 	} else if (teamChangeCount == 1){
@@ -692,7 +692,7 @@ function subtractPlayer() {
 		highlightTeamIndexList.push(myIndex);
 		teamChangeCount += 1;
 	}
-	myMessage = "<p class='modVoice'>Removed character " + masterRoleDict[myRole] + " at slot " + (targetID + 1);
+	myMessage = "<p class='modVoice'>" + masterRoleDict[myRole] + " 캐릭터가 " + (targetID + 1) + "번째 줄에서 삭제 되었습니다.";
 	if (teamChangeCount == 0) {
 		myMessage += ":</p>";
 	} else if (teamChangeCount == 1){
@@ -1136,7 +1136,7 @@ function onSurvival(playerNum) {
 	logPlayer(playerNum, 0);
 	if (hunterInGame && g.hunterNight == null) {
 		g.hunterNight = g.cycleNum;
-		return "<br><p class='modVoice'>Because this is the first time someone has survived, the Hunter may kill a target tonight.</p>";
+		return "<br><p class='modVoice'>처음으로 죽음에서 살아남은 사람이 생겼기 때문에, 오늘 밤 Hunter는 암살할 수 있습니다.</p>";
 	}
 	return "";
 }
@@ -1699,9 +1699,9 @@ function updateView() {
 			$('.reveal-roles-button').removeClass("disabled");
 			if (nextStep.prompt_string == "LYNCH") {
 				g.hauntingTargetList = [];
-				var s = "<p class='modVoice'>It is now <b>Day " + g.cycleNum + "</b>.<br>";
-				s += "There are <b>" + g.aliveNum + "</b> players alive, so it requires <b>";
-				s += (Math.floor((g.aliveNum)/2) +1 ) + "</b> to lynch.</p>";
+				var s = "<p class='modVoice'>오늘은 <b>" + g.cycleNum + "번째 날</b> 입니다.<br>";
+				s += "지금까지 <b>" + g.aliveNum + "</b>명의 플레이가 생존했습니다.";
+				s += "처형에는 최소 <b>"(Math.floor((g.aliveNum)/2) +1 ) + "</b>명의 투표가 필요합니다.</p>";
 				$('#playerListPrompt').html(s);
 			} else {
 				$('#playerListPrompt').html(nextStep.prompt_string);
@@ -1731,17 +1731,17 @@ function updateView() {
 					s += masterRoleDict[g.playerList[g.linkList[0]].role] + " was removed from the game and is a cursed totem."
 				} else if (nextStep.target_restrictions == "demons") {
 					if (demonCount == 0) {
-						s += "There are no Demons yet.";
+						s += "악마가 아직 없습니다.";
 					} else {
-						s += "Meddling with no one."
+						s += "아무도 저주에 걸리지 않았습니다."
 					}
 				} else if (nextStep.target_restrictions == "angels") {
 					if (angelCount == 0) {
-						s += "There are no Angels yet.";
+						s += "천사가 아직 없습니다.";
 					} else if (advancedRules && angelCount <= demonCount) {
-						s += "The Angels cannot protect until they outnumber the Demons.";
+						s += "악마의 수 보다 천사의 수가 더 많을 때 까지 보호를 할 수 없습니다.";
 					} else {
-						s += "There are no valid targets left to protect!";
+						s += "유효한 보호 대상이 남아있지 않습니다!";
 					}
 				}
 				s += ")</p>";
@@ -1827,7 +1827,7 @@ function updateView() {
 	if (g.peepingTomActive != null) {
 		$('.pt-section').show();
 		$('.pt-button').hide();
-		$('.pt-prompt').html(g.playerList[g.peepingTomActive].name + " the Peeping Tom is watching.");
+		$('.pt-prompt').html(g.playerList[g.peepingTomActive].name + " (Peeping Tom)이 보고있습니다.");
 		$('.pt-prompt').show();
 	} else if (nextStep.hasOwnProperty("allow_PT") && g.peepingTomAvailable != null && !g.stepCompleted) {
 		$('.pt-section').show();
@@ -1836,8 +1836,6 @@ function updateView() {
 	} else {
 		$('.pt-section').hide();
 	}
-	// console.log("---------game data---------");
-	// console.log(g);
 }
 
 function ptClick() {
