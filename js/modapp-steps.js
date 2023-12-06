@@ -178,7 +178,6 @@ function STEP_witchMeet() {
 	if (advancedRules) {
 		g.illusionKillAvailable = true;
 	}
-	debugger
 	var myMessage = "";
 	myMessage += "<p class='modVoice'>마녀, 일어나서 서로 확인해주세요.</p>";
 	myMessage += "<p class='modVoice'>여러분 중에 마녀는 총 " + witchRolePairs.length + "명 입니다.</p>";
@@ -191,7 +190,6 @@ function STEP_witchMeet() {
 	$('#witchMeet').show();
 	introWitch(witchRolePairs);
 	
-
 	myMessage += "<br><p class='modVoice'>마녀, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -202,7 +200,6 @@ STEP_witchMeet.prompt_subject = "Witches";
 STEP_witchMeet.timer = TIMER_MEDIUM;
 
 function introWitch(arr) {
-	debugger
 	var jumboImg = "";
 	for (var i = 0; i < witchRolePairs.length; i++) {
 		jumboImg += `<div class="swiper-slide"><img src="img/jumboCards/${imgRoleDict[arr[i][1]]}.jpg" width="400px" ></div>`

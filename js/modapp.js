@@ -517,7 +517,6 @@ function shuffle(array) {
 
 // 플레이어 추가
 function addPlayer() {
-	debugger
 	if (g.playerList.length >= masterElectiveRoleList.length - masterDisabledRoleList.length) {
 		return 1;
 	}
@@ -1544,6 +1543,7 @@ function interruptStep(interruptStepIndex) {
 
 function updateView() {
 	$('.main-section').hide();
+	$('#witchMeet').hide();
 	if (g == null) {
 		$('.control-button-timer').addClass("disabled");
 		$('.reveal-roles-button').addClass("disabled");
