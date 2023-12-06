@@ -601,7 +601,7 @@ function addPlayer() {
 	}
 	myMessage = "<p class='modVoice'>" + masterRoleDict[myRole] + " 캐릭터가 " + (targetID + 1) + "번째 줄에 추가 되었습니다.";
 	if (teamChangeCount == 0) {
-		myMessage += ":</p>";
+		myMessage += "</p>";
 	} else if (teamChangeCount == 1){
 		myMessage += " and changed 1 other team card:</p>";
 	} else {
@@ -1542,6 +1542,7 @@ function interruptStep(interruptStepIndex) {
 }
 
 function updateView() {
+	debugger
 	$('.main-section').hide();
 	$('#witchMeet').hide();
 	if (g == null) {
@@ -1701,7 +1702,7 @@ function updateView() {
 				g.hauntingTargetList = [];
 				var s = "<p class='modVoice'>오늘은 <b>" + g.cycleNum + "번째 날</b> 입니다.<br>";
 				s += "지금까지 <b>" + g.aliveNum + "</b>명의 플레이가 생존했습니다.";
-				s += "처형에는 최소 <b>"(Math.floor((g.aliveNum)/2) +1 ) + "</b>명의 투표가 필요합니다.</p>";
+				s += "처형에는 최소 <b>" + (Math.floor((g.aliveNum)/2) +1 ) + "</b>명의 투표가 필요합니다.</p>";
 				$('#playerListPrompt').html(s);
 			} else {
 				$('#playerListPrompt').html(nextStep.prompt_string);

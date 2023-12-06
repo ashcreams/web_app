@@ -96,7 +96,7 @@ function STEP_townSleepInstructions() {
 		}
 	}
 	var myMessage = "";
-	myMessage += "<br><p class='modVoice'>지금부터 게임을 시작하겠습니다. 모든 플레이어는 각자 자신의 카드를 확인해 주세요.</p>";
+	myMessage += "<br><p class='modVoice'>지금부터 게임을 시작하겠습니다.<br>모든 플레이어는 각자 자신의 카드를 확인해 주세요.</p>";
 	myMessage += "<br><p class='modVoice'><br>게임을 처음 시작할 때, 그리고 매일 밤,<br>사회자는 여러분들에게 밤이 되었으므로 눈을 감아달라고 할 것입니다.</p>";
 	myMessage += "<br><p class='modVoice'>그다음 여러분들은 고개를 숙여 눈을 감아야 합니다. 소리를 내어서도 안되고 어떤 소통도 할 수 없습니다.</p>";
 	myMessage += "<br><p class='modVoice'>사회자가 일어나라고 하는 캐릭터는 진행에 따라 조용하게 액션을 하셔야 합니다.</p>";
@@ -153,7 +153,7 @@ function STEP_acolyte() {
 	var myMessage = "";
 	myMessage += "<p class='modVoice'>Priest, 손을 들어주세요.</p>";
 	myMessage += "<p class='modVoice'>지금부터 Acolyte는 당신이 누군지 알겁니다.</p>";
-	myMessage += "<br><p class='modShow'>Priest " + pn(i) + "(을/를) 가르키세요.</p>";
+	myMessage += "<br><p class='modShow'>" + pn(i) + " : Priest (을/를) 가르키세요.</p>";
 	myMessage += "<br><p class='modVoice'>Acolyte, 눈을 감아주세요.</p>";
 	$('#infoPrompt').html(myMessage);
 	return 0;
@@ -184,7 +184,7 @@ function STEP_witchMeet() {
 	myMessage += "<p class='modVoice'>제가 돌아다니면서 마녀들의 캐릭터를 보여드리겠습니다.</p></br>";
 	
 	for (var i = 0; i < witchRolePairs.length; i++) {
-		myMessage += "<p class='modShow'><b>" + pn(witchRolePairs[i][0]);
+		myMessage += "<p class='modShow' align='left'><b>" + pn(witchRolePairs[i][0]);
 		myMessage += " : <span class='rolename'>" + masterRoleDict[witchRolePairs[i][1]] + "</span></p>";
 	}
 	$('#witchMeet').show();
@@ -225,9 +225,9 @@ function STEP_apprentice(choice) {
 	var myMessage = "";
 	myMessage += "<p class='modVoice'>당신이 선택한 플레이어를 알려드리겠습니다.</p><br>";
 	if (choice == 0) {
-		myMessage += "<p class='modShow'>(" + pn(gravediggerID) + "<span class='rolename'> (Gravedigger)</span> 을(를) 가르키세요.)</p>";
+		myMessage += "<p class='modShow'>(" + pn(gravediggerID) + "<span class='rolename'> : Gravedigger</span> 을(를) 가르키세요.)</p>";
 	} else if (choice == 1) {
-		myMessage += "<p class='modShow'>(" + pn(judgeID) + "<span class='rolename'> (Judge)</span> 을(를) 가르키세요.)</p>";
+		myMessage += "<p class='modShow'>(" + pn(judgeID) + "<span class='rolename'> : Judge</span> 을(를) 가르키세요.)</p>";
 	} else {
 		myMessage += "<p class='modSecret'>(Apprentice가 선택을 하지 않았습니다...)</p>";
 	}
